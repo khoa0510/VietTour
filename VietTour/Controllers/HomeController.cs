@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using VietTour.Models;
+using UitViettour.Models;
 
-namespace VietTour.Controllers
+namespace UitViettour.Controllers
 {
 	public class HomeController : Controller
 	{
@@ -13,12 +13,14 @@ namespace VietTour.Controllers
 			_logger = logger;
 		}
 
+		[Route("")]
 		public IActionResult Index()
 		{
 			return View();
 		}
 
-		public IActionResult Privacy()
+		[Route("about")]
+		public IActionResult AboutUs()
 		{
 			return View();
 		}
