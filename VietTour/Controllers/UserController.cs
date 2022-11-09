@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UitViettour.Controllers
+namespace VietTour.Controllers
 {
 	[Route("users")]
 	public class UserController : Controller

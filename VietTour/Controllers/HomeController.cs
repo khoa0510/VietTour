@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using UitViettour.Models;
+using VietTour.Data;
+using VietTour.Models;
 
-namespace UitViettour.Controllers
+namespace VietTour.Controllers
 {
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly TourData _tourData;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, TourData tourData)
 		{
 			_logger = logger;
 		}
