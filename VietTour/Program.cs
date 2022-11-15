@@ -1,10 +1,14 @@
-using VietTour.Data;
+using Microsoft.EntityFrameworkCore;
+using VietTour.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<TourData>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddDbContext<VietTour.Data.ViettourContext>(options =>
+		options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddScoped<MainRepository>();
 
 var app = builder.Build();
 
