@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VietTour.Entities;
+namespace VietTour.Models.Entities;
 
 public partial class User
 {

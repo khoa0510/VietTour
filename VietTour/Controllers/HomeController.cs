@@ -2,30 +2,30 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using VietTour.Data;
 using VietTour.Data.Repositories;
 using VietTour.Models;
 using VietTour.Models.DTOs;
+using VietTour.Models.Entities;
 
 namespace VietTour.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
 		private readonly MainRepository _mainRepository;
 		public readonly IMapper _mapper;
 
-		public HomeController(ILogger<HomeController> logger, MainRepository mainRepository, IMapper mapper)
+		public HomeController(MainRepository mainRepository, IMapper mapper)
 		{
-			_logger = logger;
 			_mainRepository = mainRepository;
 			_mapper = mapper;
 		}
 
 		[Route("")]
-		public IActionResult Index()
+		public IActionResult Index(int? page, string sortBy, string search)
 		{
-			return View(_mainRepository.tourRepository.GetAll());
+			int pageNumber = page ?? 1;
+			int pageSize = 12;
+			return View(_mainRepository.tourRepository.GetAll(pageNumber, pageSize, sortBy, search));
 		}
 
 		[Route("about")]
