@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using VietTour.Entities;
+using Microsoft.IdentityModel.Tokens;
+using VietTour.Models.Entities;
+using X.PagedList;
 
 namespace VietTour.Data.Repositories
 {
@@ -12,9 +14,21 @@ namespace VietTour.Data.Repositories
 			_context = viettourContext;
 		}
 
-		public List<Tour> GetAll()
+		public IEnumerable<Tour> GetAll(int pageNumber, int pageSize, string sortBy, string search)
 		{
-			return _context.Tours.ToList();
+			var tours = from t in _context.Tours select t;
+			if(!String.IsNullOrEmpty(search))
+			{
+				tours = tours.Where(t => t.TourName.Contains(search) || t.Province.ProvinceName.Contains(search));
+			}
+			switch (sortBy)
+			{
+				case "PRICE":
+					tours = tours.OrderBy(t => t.Price); break;
+				case "PRICE_DES":
+					tours = tours.OrderByDescending(t => t.Price); break;
+			}
+			return tours.ToPagedList(pageNumber, pageSize);
 		}
 	}
 }
