@@ -30,12 +30,16 @@ namespace VietTour.Controllers
 			}
 		}
 
+
+
 		// GET: users/login
 		[HttpGet("login")]
 		public ActionResult LogIn()
 		{
 			return View();
 		}
+
+
 
 		// POST: users/login
 		[HttpPost("login")]

@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Đăng kí";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/Register.css" rel="stylesheet" />
+<section>
+    <!--Begin Content-->
+    <div class="register-content">
+        <div class="form">
+
+            <h2>Đăng kí</h2>
+
+            <form action="">
+                <div class="input-form">
+
+                    <input type="text" name="" placeholder="Email hoặc số điện thoại">
+                </div>
+                <div class="input-form">
+
+                    <input type="password" name="" placeholder="Mật khẩu">
+                </div>
+
+                <div class="input-form">
+                    <button class="sign-up-button">Đăng Kí </button>
+                </div>
+                @*Link page Đăng kí vô*@
+                <div class="input-form">
+                    <p>Bạn Đã Có Tài Khoản? <a asp-area="" asp-controller="Login" asp-action="Login"> Đăng Nhập</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--End content-->
+</section>
