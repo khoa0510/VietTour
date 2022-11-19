@@ -29,10 +29,18 @@ namespace VietTour.Controllers
 		}
 
 		[Route("about")]
-		public IActionResult AboutUs()
-		{
-			return View();
-		}
+		//public IActionResult AboutUs()
+		//{
+		//	return View();
+		//}
+		public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Tour()
+        {
+            return View();
+        }
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

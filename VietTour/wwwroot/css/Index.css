@@ -1,0 +1,228 @@
+﻿
+/*Import font*/
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --web-color: #00C9FC;
+}
+
+* {
+    font-size: 22px;
+}
+/*CSS for banner*/
+.banner-content h1 {
+    font-family: 'Paytone One', sans-serif;
+}
+
+.banner-content .content-1 {
+    position: absolute;
+    color: var(--web-color);
+    font-style: normal;
+    font-size: 96px;
+    width: 200px;
+    height: 50px;
+    top: 260px;
+    left: 210px;
+}
+
+.banner-content .content-2 {
+    position: absolute;
+    font-style: normal;
+    font-size: 48px;
+    width: 519px;
+    height: 55px;
+    top: 400px;
+}
+
+.banner-image {
+    float: right;
+    margin-right: -40px;
+    margin-top: 50px;
+}
+
+/*CSS for button-question*/
+.button-question {
+    border-radius: 50px;
+    background-color: #F9DB0F;
+    width: 450px;
+    height: 70px;
+    text-align: center;
+    padding: 20px 105px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn-question {
+    position: relative;
+    padding-top: 575px;
+    padding-left: 352px;
+
+}
+
+.button-question:hover {
+    color: black;
+}
+
+/*CSS for place-search area*/
+div.rectangle {
+    position: absolute;
+    background-color: white;
+    width: 1125px;
+    height: 240px;
+    z-index: -1;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    margin-top: -16px;
+}
+
+div.box-2 {
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #ffff;
+    width: 1000px;
+    height: 100px;
+    margin-top: 55px;
+    margin-left: 50px;
+    border: 1px solid #00C9FC;
+    border-radius: 10px;
+}
+/*Input box*/
+.input-box {
+    position: absolute;
+    margin-top: 88px;
+    margin-left: 150px;
+    border: none;
+    font-size: 18px;
+}
+/*Icon location*/
+.fa-location-dot {
+    cursor: pointer;
+    position: absolute;
+    color: var(--web-color);
+    font-size: 46px;
+    margin-top: 80px;
+    margin-left: 90px;
+}
+
+/*Find button*/
+.find-button {
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--web-color);
+    padding: 8px 20px;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    display: inline-block;
+    margin-top: 170px;
+    margin-left: 927px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+    .find-button:hover {
+        color: gray;
+        text-decoration: none;
+    }
+/*CSS for mid-content*/
+
+.mid-content {
+    padding-top: 350px;
+}
+
+    /* Remove spacing in 2 line*/
+    .mid-content p {
+        margin: 0px;
+        padding: 0px;
+    }
+
+.mid-content-1 {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* CSS for Tour section */
+.places-list {
+    margin-top: 32px;
+}
+
+.place-img {
+    width: 100%; /*Làm 3 tấm ảnh gọn trong cái khung */
+}
+
+/*Set khung cho 3 tấm anh*/
+.tour-section {
+    margin-right: 75px;
+}
+body{
+    height:2000px;
+}
+.place-body {
+    padding: 16px;
+    background-color: white; /* khung chữ trắng nền */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 280px;
+    cursor: pointer;
+}
+/*Hover mỗi phần tử Tour sẽ tối màu*/
+.col-content-1:hover{
+    opacity: 0.78;
+}
+.col-content-2:hover {
+    opacity: 0.78;
+}
+.col-content-3:hover {
+    opacity: 0.78;
+}
+
+/*Setting font for header*/
+.place-heading {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+}
+
+    .place-heading a {
+        color: black;
+        text-decoration: none;
+    }
+
+/*Place content*/
+.place-content .place-content-item {
+    font-size: 18px;
+}
+
+/*Price*/
+.tour-price {
+    color: var(--web-color);
+    font-weight: bold;
+}
+
+/*More button*/
+.more-button {
+    background-color: var(--web-color);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px -45px;
+    cursor: pointer;
+    margin-left: 500px;
+    margin-top: 60px;
+    font-size:18px;
+}
+
+/*Hover vô button tìm kiếm*/
+.content-section a:hover {
+    color: gray;
+}
+
+.content-section a {
+    text-decoration: none;
+}
