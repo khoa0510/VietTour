@@ -45,7 +45,6 @@ namespace VietTour.Controllers
 		}
 
 
-
 		// GET: users/login
 		[HttpGet("login")]
 		public ActionResult LogIn()
@@ -72,9 +71,34 @@ namespace VietTour.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 		}
+        // GET: users/forgotpassword
+        [HttpGet("forgotpassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
 
-		// GET: users //GetAllUser
-		[HttpGet("")]
+        // POST: users/forgotpassword
+        [HttpPost("forgotpassword")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(IFormCollection collection)
+        {
+            bool err = false;
+            //Thêm hàm check sau
+            if (err)
+            {
+                return View(collection);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+
+
+        // GET: users //GetAllUser
+        [HttpGet("")]
 		public ActionResult Index()
 		{
 			return View();
