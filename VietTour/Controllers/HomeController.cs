@@ -29,10 +29,6 @@ namespace VietTour.Controllers
 		}
 
 		[Route("about")]
-		//public IActionResult AboutUs()
-		//{
-		//	return View();
-		//}
 		public IActionResult About()
         {
             return View();

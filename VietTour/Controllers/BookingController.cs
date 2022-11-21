@@ -6,26 +6,29 @@ namespace VietTour.Controllers
 	[Route("bookings")]
 	public class BookingController : Controller
 	{
-		///////////////////////////////////////////////////
-		//Bao gồm thêm Customer trong các lệnh về Booking//
-		///////////////////////////////////////////////////
-		
 		// GET: bookings
-		[HttpGet("")]
+		[HttpGet("", Name = "booking")]
 		public ActionResult Index()
 		{
 			return View();
 		}
 
 		// GET: bookings/5
-		[HttpGet("{id}")]
+		[HttpGet("{id}", Name = "booking/detail")]
 		public ActionResult Details(int id)
 		{
 			return View();
 		}
 
-		// POST: bookings
-		[HttpPost("")]
+        // GET: bookings/create
+        [HttpGet("create", Name = "booking/create")]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: bookings
+        [HttpPost("")]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(IFormCollection collection)
 		{
@@ -42,7 +45,7 @@ namespace VietTour.Controllers
 		}
 
 		// GET: bookings/5/edit
-		[HttpGet("{id}/edit")]
+		[HttpGet("{id}/edit", Name = "booking/edit")]
 		public ActionResult Edit(int id)
 		{
 			return View();

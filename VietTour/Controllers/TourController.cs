@@ -7,21 +7,21 @@ namespace VietTour.Controllers
 	public class TourController : Controller
 	{
 		// GET: tours
-		[HttpGet("")]
+		[HttpGet("", Name = "tour")]
 		public ActionResult Index()
 		{
 			return View();
 		}
 
 		// GET: tours/5
-		[HttpGet("{id}")]
+		[HttpGet("{id}", Name = "tour/detail")]
 		public ActionResult Details(int id)
 		{
 			return View();
 		}
 
 		// GET: tours/create
-		[HttpGet("create")]
+		[HttpGet("create", Name = "tour/create")]
 		public ActionResult Create()
 		{
 			return View();
@@ -45,7 +45,7 @@ namespace VietTour.Controllers
 		}
 
 		// GET: tours/edit/5
-		[HttpGet("edit/{id}")]
+		[HttpGet("edit/{id}", Name = "tour/edit")]
 		public ActionResult Edit(int id)
 		{
 			return View();

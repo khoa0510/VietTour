@@ -19,7 +19,7 @@ namespace VietTour.Controllers
 		}
 
 		// GET: signup
-		[HttpGet("signup")]
+		[HttpGet("signup", Name = "user/signup")]
 		public ActionResult SignUp()
 		{
 			return View();
@@ -45,8 +45,9 @@ namespace VietTour.Controllers
 
 
 		// GET: login
-		[HttpGet("login")]
-		public ActionResult LogIn()
+		[HttpGet("login", Name = "user/login")]
+
+        public ActionResult LogIn()
 		{
 			return View();
 		}
@@ -71,7 +72,7 @@ namespace VietTour.Controllers
 			}
 		}
         // GET: forgotpassword
-        [HttpGet("forgotpassword")]
+        [HttpGet("forgotpassword", Name = "user/forgotpassword")]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -97,21 +98,21 @@ namespace VietTour.Controllers
 
 
         // GET: users //GetAllUser
-        [HttpGet("users")]
+        [HttpGet("users", Name = "user")]
 		public ActionResult Index()
 		{
 			return View();
 		}
 
 		// GET: users/5
-		[HttpGet("users/{id}")]
+		[HttpGet("users/{id}", Name = "user/detail")]
 		public ActionResult Details(int id)
 		{
 			return View();
 		}
 
 		// GET: users/5/edit
-		[HttpGet("users/{id}/edit")]
+		[HttpGet("users/{id}/edit", Name = "user/edit")]
 		public ActionResult Edit(int id)
 		{
 			return View();
