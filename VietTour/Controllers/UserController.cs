@@ -7,7 +7,6 @@ using VietTour.Models.DTOs;
 
 namespace VietTour.Controllers
 {
-	[Route("users")]
 	public class UserController : Controller
 	{
 		private readonly MainRepository _mainRepository;
@@ -19,7 +18,7 @@ namespace VietTour.Controllers
 			_mapper = mapper;
 		}
 
-		// GET: users/signup
+		// GET: signup
 		[HttpGet("signup")]
 		public ActionResult SignUp()
 		{
@@ -27,7 +26,7 @@ namespace VietTour.Controllers
 		}
 
 		// POST: users/signup
-		[HttpPost("signup")]
+		[HttpPost("users/signup")]
 		[ValidateAntiForgeryToken]
 		public ActionResult SignUp(IFormCollection collection) ///////////////////// Change IFormCollection to ViewModel
 		{
@@ -45,7 +44,7 @@ namespace VietTour.Controllers
 		}
 
 
-		// GET: users/login
+		// GET: login
 		[HttpGet("login")]
 		public ActionResult LogIn()
 		{
@@ -55,7 +54,7 @@ namespace VietTour.Controllers
 
 
 		// POST: users/login
-		[HttpPost("login")]
+		[HttpPost("users/login")]
 		[ValidateAntiForgeryToken]
 		public ActionResult LogIn(IFormCollection collection) ///////////////////// Change IFormCollection to ViewModel
 		{
@@ -71,7 +70,7 @@ namespace VietTour.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 		}
-        // GET: users/forgotpassword
+        // GET: forgotpassword
         [HttpGet("forgotpassword")]
         public ActionResult ForgotPassword()
         {
@@ -79,7 +78,7 @@ namespace VietTour.Controllers
         }
 
         // POST: users/forgotpassword
-        [HttpPost("forgotpassword")]
+        [HttpPost("users/forgotpassword")]
         [ValidateAntiForgeryToken]
         public ActionResult ForgotPassword(IFormCollection collection)
         {
@@ -98,28 +97,28 @@ namespace VietTour.Controllers
 
 
         // GET: users //GetAllUser
-        [HttpGet("")]
+        [HttpGet("users")]
 		public ActionResult Index()
 		{
 			return View();
 		}
 
 		// GET: users/5
-		[HttpGet("{id}")]
+		[HttpGet("users/{id}")]
 		public ActionResult Details(int id)
 		{
 			return View();
 		}
 
 		// GET: users/5/edit
-		[HttpGet("{id}/edit")]
+		[HttpGet("users/{id}/edit")]
 		public ActionResult Edit(int id)
 		{
 			return View();
 		}
 
 		// PUT: users/5
-		[HttpPut("{id}")]
+		[HttpPut("users/{id}")]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(int id, IFormCollection collection)
 		{
@@ -136,7 +135,7 @@ namespace VietTour.Controllers
 		}
 
 		// Delete: users/5
-		[HttpDelete("{id}")]
+		[HttpDelete("users/{id}")]
 		[ValidateAntiForgeryToken]
 		public ActionResult Delete(int id)
 		{
