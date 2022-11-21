@@ -26,14 +26,14 @@
                 </div>
                 @*Nhớ link page quên mật khẩu vô*@
                 <div class="forgot-password">
-                    <a asp-area="" asp-controller="Login" asp-action="ForgotPassword"> Quên mật khẩu? </a>
+                    <a asp-route="user/forgotpassword"> Quên mật khẩu? </a>
                 </div>
                 <div class="input-form">
                     <button class="sign-in-button">Đăng nhập</button>
                 </div>
                 @*Link page Đăng kí vô*@
                 <div class="input-form">
-                    <p>Bạn Chưa Có Tài Khoản? <a asp-area="" asp-controller="Login" asp-action="Register">Đăng Ký</a></p>
+                    <p>Bạn Chưa Có Tài Khoản? <a asp-route="user/signup">Đăng Ký</a></p>
                 </div>
             </form>
         </div>
