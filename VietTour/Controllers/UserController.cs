@@ -49,6 +49,7 @@ namespace VietTour.Controllers
 
         public ActionResult LogIn()
 		{
+
 			return View();
 		}
 

@@ -18,7 +18,7 @@ section .login-content {
     justify-content: center;
     align-items: center;
     padding-top: 46px;
-    margin-left:-130px;
+    margin-left: 20px;
 }
 
     section .login-content .form {
@@ -78,7 +78,7 @@ section .login-content {
         section .login-content .form .forgot-password a {
             color: var(--web-color);
             font-size: 22px;
-            padding-left: 493px;
+            padding-left: 470px;
             text-decoration: none;
         }
 
