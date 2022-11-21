@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@*@model TOUR.Models.LoginModel*@
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/login.css" rel="stylesheet" />
+<section>
+    <!--Begin Content-->
+    <div class="login-content">
+        <div class="form">
+
+            <h2>Đăng Nhập</h2>
+
+            <form action="">
+                <div class="input-form">
+
+                    <input type="text" name="" placeholder="Email hoặc số điện thoại" >
+                </div>
+                <div class="input-form">
+
+                    <input type="password" name="" placeholder="Mật khẩu" >
+                </div>
+                @*Nhớ link page quên mật khẩu vô*@
+                <div class="forgot-password">
+                    <a asp-area="" asp-controller="Login" asp-action="ForgotPassword"> Quên mật khẩu? </a>
+                </div>
+                <div class="input-form">
+                    <button class="sign-in-button">Đăng nhập</button>
+                </div>
+                @*Link page Đăng kí vô*@
+                <div class="input-form">
+                    <p>Bạn Chưa Có Tài Khoản? <a asp-area="" asp-controller="Login" asp-action="Register">Đăng Ký</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--End content-->
+</section>
+@*<script>
+    const listAccount = [
+        {
+            username: "Admin",
+            password: "Admin"
+        },
+        {
+            username: "Admin1",
+            password: "Admin"
+        },
+        {
+            username: "Admin2",
+            password: "Admin"
+        }
+    ]
+    let isLogin = !!localStorage.getItem("token")
+
+    function CheckLogin(){
+        if(isLogin){
+            window.location.href = "~/Home/Index.cshtml"
+        }
+    }
+    function Login() {
+        let username = document.getElementByID("username").value
+        let password = document.getElementByID("password").value
+        let checkLogin = listAccount.some(value => value.username === username && value.password === password)
+        if(checkLogin){
+            localStorage.setItem("token", username)
+            isLogin =true
+            CheckLogin()
+        } else{
+            alert("Sai ten hoac mat khau")
+        }
+
+    }
+</script>
+*@

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using VietTour.Entities;
+using VietTour.Models.Entities;
 using VietTour.Models.DTOs;
 
 namespace VietTour.Profiles

@@ -7,7 +7,7 @@ namespace VietTour.Controllers
 	public class BillController : Controller
 	{
 		// GET: bills //List all payment, can sort
-		[HttpGet("")]
+		[HttpGet("", Name = "bill")]
 		public ActionResult Index(/*search*/string customer_name,/*filter*/ int startDate, int endDate)
 		{
 			return View();

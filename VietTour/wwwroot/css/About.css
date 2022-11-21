@@ -1,0 +1,50 @@
+﻿
+
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Quicksand:wght@300;400;500;600;700&display=swap');
+:root {
+    --web-color: #00C9FC;
+}
+
+* {
+    font-size: 18px;
+}
+body {
+    width: 1510px;
+    height: 1000px;
+}
+/*1520*/
+.about-section {
+    width: 1519px;
+    height: 300px;
+    margin-left: -200px;
+}
+
+.about-group .about-content-right {
+/*    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+    padding-top: 120px;
+    padding-left: 855px;
+    font-weight: 700;
+    color: black;*/
+
+}
+/*About banner*/
+
+.about-content-left{
+    width: 755px;
+    background-color: var(--web-color);
+    height: 300px;
+    position: absolute;
+    top: 129px;
+}
+
+/*CSS for about content*/
+.about-content-left p {
+    color: #ffff;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 40px;
+    font-size: 30px;
+}

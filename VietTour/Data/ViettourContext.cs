@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using VietTour.Entities;
+using VietTour.Models.Entities;
 
 namespace VietTour.Data;
 

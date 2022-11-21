@@ -1,24 +1,37 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VietTour.Data.Repositories;
+using VietTour.Models.Entities;
+using VietTour.Models.DTOs;
 
 namespace VietTour.Controllers
 {
-	[Route("users")]
 	public class UserController : Controller
 	{
-		// GET: users/signup
-		[HttpGet("signup")]
+		private readonly MainRepository _mainRepository;
+		private readonly IMapper _mapper;
+
+		public UserController(MainRepository mainRepository, IMapper mapper)
+		{
+			_mainRepository = mainRepository;
+			_mapper = mapper;
+		}
+
+		// GET: signup
+		[HttpGet("signup", Name = "user/signup")]
 		public ActionResult SignUp()
 		{
 			return View();
 		}
 
 		// POST: users/signup
-		[HttpPost("signup")]
+		[HttpPost("users/signup")]
 		[ValidateAntiForgeryToken]
-		public ActionResult SignUp(IFormCollection collection)
+		public ActionResult SignUp(IFormCollection collection) ///////////////////// Change IFormCollection to ViewModel
 		{
-			bool err = false;
+			var user = _mapper.Map<User>(collection);
+			bool err = !_mainRepository.userRepository.SignUp(user);
 			//Thêm hàm check sau
 			if (err)
 			{
@@ -30,19 +43,24 @@ namespace VietTour.Controllers
 			}
 		}
 
-		// GET: users/login
-		[HttpGet("login")]
-		public ActionResult LogIn()
+
+		// GET: login
+		[HttpGet("login", Name = "user/login")]
+
+        public ActionResult LogIn()
 		{
 			return View();
 		}
 
+
+
 		// POST: users/login
-		[HttpPost("login")]
+		[HttpPost("users/login")]
 		[ValidateAntiForgeryToken]
-		public ActionResult LogIn(IFormCollection collection)
+		public ActionResult LogIn(IFormCollection collection) ///////////////////// Change IFormCollection to ViewModel
 		{
-			bool err = false;
+			var user = _mapper.Map<User>(collection);
+			bool err = !_mainRepository.userRepository.VerifyPassword(user);
 			//Thêm hàm check sau
 			if (err)
 			{
@@ -53,30 +71,55 @@ namespace VietTour.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 		}
+        // GET: forgotpassword
+        [HttpGet("forgotpassword", Name = "user/forgotpassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
 
-		// GET: users //GetAllUser
-		[HttpGet("")]
+        // POST: users/forgotpassword
+        [HttpPost("users/forgotpassword")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(IFormCollection collection)
+        {
+            bool err = false;
+            //Thêm hàm check sau
+            if (err)
+            {
+                return View(collection);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+
+
+        // GET: users //GetAllUser
+        [HttpGet("users", Name = "user")]
 		public ActionResult Index()
 		{
 			return View();
 		}
 
 		// GET: users/5
-		[HttpGet("{id}")]
+		[HttpGet("users/{id}", Name = "user/detail")]
 		public ActionResult Details(int id)
 		{
 			return View();
 		}
 
 		// GET: users/5/edit
-		[HttpGet("{id}/edit")]
+		[HttpGet("users/{id}/edit", Name = "user/edit")]
 		public ActionResult Edit(int id)
 		{
 			return View();
 		}
 
 		// PUT: users/5
-		[HttpPut("{id}")]
+		[HttpPut("users/{id}")]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(int id, IFormCollection collection)
 		{
@@ -93,7 +136,7 @@ namespace VietTour.Controllers
 		}
 
 		// Delete: users/5
-		[HttpDelete("{id}")]
+		[HttpDelete("users/{id}")]
 		[ValidateAntiForgeryToken]
 		public ActionResult Delete(int id)
 		{
