@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using VietTour.Data.Repositories;
 using VietTour.Models;
-using VietTour.Models.DTOs;
 using VietTour.Models.Entities;
 
 namespace VietTour.Controllers
