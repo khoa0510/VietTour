@@ -1,0 +1,274 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Quicksand', sans-serif;
+    
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    color: #292929;
+    font-size: 18px;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.pad-15-25 {
+    padding: 15px 25px;
+}
+
+.pad-left-18 {
+    padding-left: 18px;
+}
+
+.btn {
+    color: #ffffff !important;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: #00c9fc;
+}
+
+.btn-yellow {
+    background-color: #F9DB0F;
+}
+
+.text-blue {
+    color: #00c9fc;
+}
+
+/*main code*/
+
+/*Banner*/
+.tour-detail-banner {
+    min-height: 600px;
+    top: 134px;
+    width: auto;
+    margin: 0 -113px;
+    background: url(/image/tour-detail-banner.png) no-repeat center top;
+    background-size: cover;
+    display: block;
+}
+
+/*Search tour box*/
+.box-tour {
+    position: relative;
+    height: 200px;
+    background: #ffffff;
+    box-shadow: 0px 0px 30px rgb(0 0 0 / 15%);
+    border-radius: 20px;
+    z-index: 1;
+    bottom: 50px;
+}
+
+.box-search-tour {
+    position: relative;
+    top: 25px;
+    height: 200px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group .search-input-field {
+    position: relative;
+    font-family: 'Quicksand', sans-serif;
+    width: 92%;
+    border: 1px solid #00c9fc;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 25px 30px 25px 70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form-group i {
+    position: absolute;
+    font-size: 40px;
+    color: #00c9fc;
+    left: 80px;
+}
+
+/*Search tour button*/
+.box-search-tour .search-tour-button {
+    position: absolute;
+    padding: 11px 35px;
+    right: 52px;
+    margin-top: 23px;
+}
+
+.form-tour .box-search-tour a {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/*------Breadcrumb-----*/
+.breadcrumb {
+    list-style: none;
+    position: relative;
+    top: -20px;
+}
+
+.breadcrumb li {
+    display: inline;
+}
+
+.breadcrumb li + li:before {
+    padding: 10px;
+    color: #292929;
+    content: "/\00a0";
+}
+
+.breadcrumb li a {
+    color: #292929;
+    text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+    color: #00c9fc;
+    cursor: pointer;
+}
+/*------Breadcrumb-----*/
+
+
+/*Tour detail*/
+.tour-detail-section {
+}
+
+.tour-detail-section .tour-title {
+    font-weight: 700;
+    position:relative;
+    bottom: 25px;
+}
+
+.tour-container {
+}
+
+.tour-content {
+    position: relative;
+}
+
+.tour-cover {
+    width: 100%;
+    height: 500px;
+    background: url('/image/Da Nang.jpg') no-repeat center top;
+    background-size: cover;
+}
+
+/*--------Tour info below tour cover------*/
+.tour-info-belowCover {
+    margin: 15px 0;
+}
+
+.content-belowCover {
+
+}
+
+.content-belowCover span {
+    margin-right: 40px;
+    font-weight: 700;
+}
+
+.content-belowCover i {
+    margin: 0px 5px;
+}
+
+.tour-placename i {
+    font-size: 22px;
+}
+
+.tour-code {
+    float: right;
+    font-weight: 700;
+}
+/*-------Tour info below tour cover--------*/
+
+/*-------Outstanding place-------*/
+.outstanding-place-content, .tour-detail-content {
+    background: #ffffff;
+    height: auto;
+}
+
+.outstanding-place-content h3 {
+    margin: 5px 0px;
+}
+
+.outstanding-place-content .tour-content li {
+    font-weight: 500;
+}
+
+/*-------Tour-detail-content-------*/
+
+.tour-detail-content .tour-content h3{
+    margin: 5px 0px;
+}
+/*-------Tour-detail-content-------*/
+
+/*-------Comment--------*/
+
+.comment {
+    position: relative;
+    background-color: #ffffff;
+    height: auto;
+}
+
+.comment .comment-title {
+    font-size: 24px;
+}
+
+.comment .customer-review-detail-container .review-info-container {
+    margin: 0 15px;
+}
+
+.comment .customer-review-detail .horizontal-line {
+    border-bottom: 1px solid #E0E0E0;
+    margin: 5px -10px;
+}
+
+.comment .customer-review-detail .customername-date p {
+    display: inline-block;
+}
+
+.comment .customer-review-detail .customername-date {
+    margin-bottom: -10px;
+}
+
+.comment .customer-review-detail .comment-date {
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+.comment .showmore-button {
+    position: relative;
+    padding: 11px 35px;
+    margin: 10px 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/*-------Comment--------*/
+
+/*Side bar*/
+.tour-container .sidebar-content {
+    position: relative;
+    background: #ffffff;
+    height: auto;
+}
+
+input[type="date"] {
+    width: 300px;
+    min-height: 50px;
+    background: #F0A500 url(icon.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 90%
+}
