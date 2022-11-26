@@ -26,7 +26,7 @@
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Tour">Du lịch</a>
+                            <a class="nav-link" asp-area="" asp-controller="Tour" asp-action="TourDetail">Du lịch</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="About">Giới thiệu</a>
@@ -53,11 +53,61 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="footer">
+    @*<footer class="footer">
         <div class="container">
             <a class="foot-content"> Copyright © 2022. Viettour. All Rights Reserved</a>
         </div>       
-    </footer>
+    </footer>*@
+	<footer class="text-white footer">
+		<div class="footer-top">
+			<div class="container">
+                <div class="links-list">
+                    <p class="fw-bold title">Liên kết trang</p>
+                    <div class="content">
+                        <ul class="content-list">
+                            <li class="content-item"><a href="">Trang chủ</a></li>
+                            <li class="content-item"><a href="">Du lịch</a></li>
+                            <li class="content-item"><a href="">Về chúng tôi</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="support">
+                    <p class="fw-bold title">Hỗ trợ</p>
+                    <div class="content">
+                        <ul class="content-list">
+                            <li class="content-item"><a href="">Hỗ trợ khách hàng</a></li>
+                            <li class="content-item"><a href="">Chính sách bảo mật</a></li>
+                        </ul>
+                    </div>
+                </div>
+				<div class="contact">
+                    <p class="fw-bold title">Liên hệ chúng tôi</p>
+                    <div class="content">
+                        <ul class="content-list">
+                            <li class="contact-item">
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:+0968072139" class="contact-link">0968 072 139</a>
+                            </li>
+                            <li class="contact-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="mailto:info@viettour.com" class="contact-link">info@viettour.com</a>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+                <div class="copyright">Copyright © 2022 Viettour</div>
+                <div class="social-media-icons">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+		</div>
+	</footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

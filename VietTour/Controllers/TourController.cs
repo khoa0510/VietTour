@@ -6,16 +6,22 @@ namespace VietTour.Controllers
 	[Route("tours")]
 	public class TourController : Controller
 	{
-		// GET: tours
-		[HttpGet("", Name = "tour")]
-		public ActionResult Index()
-		{
-			return View();
-		}
+		//// GET: tours
+		//[HttpGet("", Name = "tour")]
+		//public ActionResult Index()
+		//{
+		//	return View();
+		//}
 
 		// GET: tours/5
 		[HttpGet("{id}", Name = "tour/detail")]
 		public ActionResult Details(int id)
+		{
+			return View();
+		}
+
+		//them nho xoa
+		public ActionResult TourDetail(int id)
 		{
 			return View();
 		}
