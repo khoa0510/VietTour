@@ -18,7 +18,7 @@ section .login-content {
     justify-content: center;
     align-items: center;
     padding-top: 46px;
-    margin-left:-130px;
+    margin-left: 20px;
 }
 
     section .login-content .form {
@@ -53,9 +53,9 @@ section .login-content {
                 border-radius: 10px;
             }
 
-            section .login-content .form .input-form .sign-in-button {
-                background: var(--web-color);
-                color: #fff;
+            .login-content .form  .input-form[type=submit]{
+                background-color: var(--web-color);
+                color: black;
                 outline: none;
                 padding-top:11px;
                 text-align: center;
@@ -69,7 +69,7 @@ section .login-content {
                 box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12), 0 16px 16px rgba(0,0,0,0.12);
             }
                     /*Hover submit button*/
-                    section .login-content .form .input-form .sign-in-button:hover {
+                    input[type=submit]:hover  {
                         background: var(--web-color);
                         opacity: 0.8;
                     }
@@ -78,7 +78,7 @@ section .login-content {
         section .login-content .form .forgot-password a {
             color: var(--web-color);
             font-size: 22px;
-            padding-left: 493px;
+            padding-left: 470px;
             text-decoration: none;
         }
 

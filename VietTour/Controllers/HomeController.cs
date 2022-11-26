@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using VietTour.Data.Repositories;
 using VietTour.Models;
-using VietTour.Models.DTOs;
 using VietTour.Models.Entities;
 
 namespace VietTour.Controllers
@@ -20,7 +19,9 @@ namespace VietTour.Controllers
 			_mapper = mapper;
 		}
 
-		[Route("")]
+     
+        [Route("")]
+		[HttpGet("", Name = "home/index")]
 		public IActionResult Index(int? page, string sortBy, string search)
 		{
 			int pageNumber = page ?? 1;
@@ -28,12 +29,9 @@ namespace VietTour.Controllers
 			return View(_mainRepository.tourRepository.GetAll(pageNumber, pageSize, sortBy, search));
 		}
 
-		[Route("about")]
+        //GET : About
+		[Route("about", Name = "home/about")]
 		public IActionResult About()
-        {
-            return View();
-        }
-        public IActionResult Tour()
         {
             return View();
         }
