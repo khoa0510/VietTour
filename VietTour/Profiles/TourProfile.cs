@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using VietTour.Models.Entities;
-using VietTour.Models.DTOs;
+
 
 namespace VietTour.Profiles
 {
@@ -8,7 +8,7 @@ namespace VietTour.Profiles
 	{
 		public TourProfile()
 		{
-			CreateMap<TourDTO, Tour>();
+			//CreateMap<TourDTO, Tour>();
 		}
 	}
 }

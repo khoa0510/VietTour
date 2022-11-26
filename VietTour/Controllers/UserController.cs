@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VietTour.Data.Repositories;
 using VietTour.Models.Entities;
-using VietTour.Models.DTOs;
 
 namespace VietTour.Controllers
 {
@@ -48,6 +47,7 @@ namespace VietTour.Controllers
 
         public ActionResult LogIn()
 		{
+
 			return View();
 		}
 
