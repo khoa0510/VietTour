@@ -28,7 +28,7 @@ namespace VietTour.Data.Repositories
 				case "PRICE_DES":
 					tours = tours.OrderByDescending(t => t.Price); break;
 			}
-			return tours.ToPagedList(pageNumber, pageSize);
+			return tours;
 		}
 	}
 }

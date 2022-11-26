@@ -19,8 +19,9 @@ namespace VietTour.Controllers
 			_mapper = mapper;
 		}
 
-        [HttpGet("index", Name = "home/index")]
+     
         [Route("")]
+		[HttpGet("", Name = "home/index")]
 		public IActionResult Index(int? page, string sortBy, string search)
 		{
 			int pageNumber = page ?? 1;
@@ -29,16 +30,8 @@ namespace VietTour.Controllers
 		}
 
         //GET : About
-        [HttpGet("about", Name = "home/about")]
-        [Route("about")]
+		[Route("about", Name = "home/about")]
 		public IActionResult About()
-        {
-            return View();
-        }
-
-		// GET : Tour
-        [HttpGet("tour", Name = "home/tour")]
-        public IActionResult Tour()
         {
             return View();
         }
