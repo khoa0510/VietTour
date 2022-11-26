@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using VietTour.Models.Entities;
-using X.PagedList;
 
 namespace VietTour.Data.Repositories
 {
@@ -28,7 +27,7 @@ namespace VietTour.Data.Repositories
 				case "PRICE_DES":
 					tours = tours.OrderByDescending(t => t.Price); break;
 			}
-			return tours.ToPagedList(pageNumber, pageSize);
+			return tours;
 		}
 	}
 }

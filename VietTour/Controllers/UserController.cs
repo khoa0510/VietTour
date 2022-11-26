@@ -43,7 +43,6 @@ namespace VietTour.Controllers
 			}
 		}
 
-
 		// GET: login
 		[HttpGet("login", Name = "user/login")]
 
@@ -52,25 +51,34 @@ namespace VietTour.Controllers
 			return View();
 		}
 
-
-
 		// POST: users/login
 		[HttpPost("users/login")]
 		[ValidateAntiForgeryToken]
 		public ActionResult LogIn(IFormCollection collection) ///////////////////// Change IFormCollection to ViewModel
 		{
 			var user = _mapper.Map<User>(collection);
-			bool err = !_mainRepository.userRepository.VerifyPassword(user);
+			int userId = _mainRepository.userRepository.VerifyPassword(user);
 			//Thêm hàm check sau
-			if (err)
+			if (userId == 0)
 			{
 				return View(collection);
 			}
 			else
 			{
+				HttpContext.Session.SetString("user_id", userId.ToString());
 				return RedirectToAction(nameof(Index));
 			}
 		}
+
+        // GET: users/logout
+        [HttpGet("users/logout")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+			HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: forgotpassword
         [HttpGet("forgotpassword", Name = "user/forgotpassword")]
         public ActionResult ForgotPassword()
@@ -94,8 +102,6 @@ namespace VietTour.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
-
 
         // GET: users //GetAllUser
         [HttpGet("users", Name = "user")]
