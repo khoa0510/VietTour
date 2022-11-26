@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using VietTour.Models.Entities;
-using X.PagedList;
 
 namespace VietTour.Data.Repositories
 {

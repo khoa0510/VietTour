@@ -21,17 +21,15 @@ namespace VietTour.Data.Repositories
 			return true;
 		}
 
-		public bool VerifyPassword(User user)
+		public int VerifyPassword(User user)
 		{
 			var users = _context.Users.SingleOrDefault(u => u.Email == user.Email);
-			if (users == null)
+			if (users != null)
 			{
-				return false;
+				if( BCrypt.Net.BCrypt.Verify(user.Password, users.Password))
+					return users.UserId;
 			}
-			else
-			{
-				return BCrypt.Net.BCrypt.Verify(user.Password, users.Password);
-			}
+			return 0;
 		}
 	}
 }
