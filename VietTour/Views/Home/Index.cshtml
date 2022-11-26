@@ -47,24 +47,26 @@
         <!--HOT Places-->
         <div class="row places-list">
             <!---------------------------------------------------------------->
-            @foreach (var tour in Model.tourList)
+            @if (Model != null)
             {
-                <div class="col col-content-1">
-                    <img src=@tour.imagesUrl>
-                    <div class="place-body place-1">
-                        <h3 class="place-heading">
-                            @*truyen toi detail*@
-                            <a asp-route="tour/detail" asp-route-id="@tour.tourId">@tour.TourName</a>
-                        </h3>
-                        <ul class="place-content">
-                            @tour.Summary
-                        </ul>
-                        @*Sau này lấy giá trị trong Models ra thay thành biến*@
-                        <p class="tour-price"> @tour.Price</p>
+                @foreach (var tour in Model.tourList)
+                {
+                    <div class="col col-content-1">
+                        <img src=@tour.imagesUrl>
+                        <div class="place-body place-1">
+                            <h3 class="place-heading">
+                                @*truyen toi detail*@
+                                <a asp-route="tour/detail" asp-route-id="@tour.tourId">@tour.TourName</a>
+                            </h3>
+                            <ul class="place-content">
+                                @tour.Summary
+                            </ul>
+                            @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                            <p class="tour-price"> @tour.Price</p>
+                        </div>
                     </div>
-                </div>
+                }
             }
-
 
             <div class="col col-content-1">
                 <img src="~/image/image-tour-1.png" alt="" class="place-img">

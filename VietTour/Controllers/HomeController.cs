@@ -26,7 +26,8 @@ namespace VietTour.Controllers
 		{
 			int pageNumber = page ?? 1;
 			int pageSize = 12;
-			return View(_mainRepository.tourRepository.GetAll(pageNumber, pageSize, sortBy, search));
+			var tourList = _mainRepository.tourRepository.GetAll(pageNumber, pageSize, sortBy, search);
+            return View();
 		}
 
         //GET : About
