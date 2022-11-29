@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using VietTour.Models.Entities;
+using VietTour.Data.Entities;
 
 namespace VietTour.Data.Repositories
 {
-	public class UserRepository
+    public class UserRepository
 	{
 		private readonly ViettourContext _context;
 
