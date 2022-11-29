@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
-using VietTour.Models.Entities;
+using VietTour.Data.Entities;
 
 namespace VietTour.Data.Repositories
 {
-	public class TourRepository
+    public class TourRepository
 	{
 		private readonly ViettourContext _context;
 
