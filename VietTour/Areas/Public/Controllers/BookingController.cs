@@ -2,6 +2,7 @@
 
 namespace VietTour.Areas.Public.Controllers
 {
+    [Area("Public")]
     public class BookingController : Controller
     {
         [HttpGet]

@@ -6,6 +6,7 @@ using VietTour.Areas.Public.Models;
 
 namespace VietTour.Areas.Public.Controllers
 {
+	[Area("Public")]
 	public class HomeController : Controller
 	{
 		private readonly MainRepository _mainRepository;

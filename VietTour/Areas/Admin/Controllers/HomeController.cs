@@ -6,12 +6,13 @@ using VietTour.Areas.Admin.Models;
 
 namespace VietTour.Areas.Admin.Controllers
 {
-	public class DashboardController : Controller
+	[Area("Admin")]
+	public class HomeController : Controller
 	{
 		private readonly MainRepository _mainRepository;
 		public readonly IMapper _mapper;
 
-		public DashboardController(MainRepository mainRepository, IMapper mapper)
+		public HomeController(MainRepository mainRepository, IMapper mapper)
 		{
 			_mainRepository = mainRepository;
 			_mapper = mapper;
