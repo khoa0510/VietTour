@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Net;
-using VietTour.Data.Entities;
+﻿using VietTour.Data.Entities;
 
 namespace VietTour.Data.Repositories
 {

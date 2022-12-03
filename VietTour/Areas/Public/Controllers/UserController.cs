@@ -35,7 +35,7 @@ namespace VietTour.Areas.Public.Controllers
         public ActionResult SignUp(SignUpViewModel signUpViewModel)
         {
             var user = _mapper.Map<User>(signUpViewModel);
-            bool err = !_mainRepository.userRepository.SignUp(user);
+            bool err = !_mainRepository.UserRepository.SignUp(user);
             if (err)
             {
                 TempData["Status"] = "Tài khoản đã tồn tại";
@@ -60,7 +60,7 @@ namespace VietTour.Areas.Public.Controllers
         public async Task<IActionResult> LogIn(LogInViewModel logInViewModel)
         {
             var user = _mapper.Map<User>(logInViewModel);
-			User checkedUser = _mainRepository.userRepository.VerifyPassword(user);
+			User checkedUser = _mainRepository.UserRepository.VerifyPassword(user);
 			if (checkedUser == null)
 			{
                 TempData["Status"] = "Sai số điện thoại hoặc mật khẩu";
@@ -88,7 +88,7 @@ namespace VietTour.Areas.Public.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "Customer")]
+        [Authorize]
         public async Task Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -135,13 +135,13 @@ namespace VietTour.Areas.Public.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "Customer")]
+        [Authorize]
         public ActionResult Details()
         {
             string? id = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
             if (id == null)
                 return RedirectToAction("Index", "Home");
-            User? user = _mainRepository.userRepository.GetUserDetail(id);
+            User? user = _mainRepository.UserRepository.GetUserDetail(id);
             if (user == null)
                 return RedirectToAction("Index", "Home");
             var userDetailViewModel = _mapper.Map<UserDetailViewModel>(user);
@@ -149,13 +149,13 @@ namespace VietTour.Areas.Public.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "Customer")]
+        [Authorize]
         public ActionResult Edit()
         {
             string? id = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
             if (id == null)
                 return RedirectToAction("Index", "Home");
-            User? user = _mainRepository.userRepository.GetUserDetail(id);
+            User? user = _mainRepository.UserRepository.GetUserDetail(id);
             if (user == null)
                 return RedirectToAction("Index", "Home");
             var editUserViewModel = _mapper.Map<EditUserViewModel>(user);
@@ -164,14 +164,14 @@ namespace VietTour.Areas.Public.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "Customer")]
+        [Authorize]
         public ActionResult Edit(EditUserViewModel editUserViewModel)
         {
             User user = _mapper.Map<User>(editUserViewModel);
             user.CookieId = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
             if (user.CookieId == null)
                 return RedirectToAction("Index", "Home");
-            bool err = _mainRepository.userRepository.EditUser(user);
+            bool err = _mainRepository.UserRepository.EditUser(user);
             if (err)
             {
                 TempData["Status"] = "Không thể cập nhật thông tin, vui lòng kiểm tra lại";
