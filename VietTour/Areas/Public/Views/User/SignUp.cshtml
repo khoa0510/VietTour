@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "Đăng kí";
 }
-
+@model SignUpViewModel
 <link href="~/css/SignUp.css" rel="stylesheet" />
 <section>
     <!--Begin Content-->
@@ -14,7 +14,7 @@
 
             <h2>Đăng kí</h2>
 
-            <form action="">
+            <form method="post" action="">
                 <div class="input-form">
                     @*Username???*@
                     <input type="text" name="Phone" placeholder="Số điện thoại">
@@ -29,7 +29,7 @@
                 </div>
                 @*Link page Đăng kí vô*@
                 <div class="input-form">
-                    <p>Bạn Đã Có Tài Khoản? <a asp-route="user/login"> Đăng Nhập</a></p>
+                    <p>Bạn Đã Có Tài Khoản? <a asp-area="Public" asp-controller="User" asp-action="LogIn"> Đăng Nhập</a></p>
                 </div>
             </form>
         </div>

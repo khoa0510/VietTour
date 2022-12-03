@@ -8,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Customer", policy => policy.RequireClaim("User"));
+    options.AddPolicy("Employee", policy => policy.RequireClaim("Admin"));
+});
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<VietTour.Data.ViettourContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));

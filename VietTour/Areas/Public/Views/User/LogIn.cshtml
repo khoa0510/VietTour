@@ -24,14 +24,14 @@
                     <input type="password" name="Password" placeholder="Mật khẩu" >
                 </div>
                 <div class="forgot-password">
-                    <a asp-route="user/forgotpassword"> Quên mật khẩu? </a>
+                    <a asp-area="Public" asp-controller="User" asp-action="ForgotPassword"> Quên mật khẩu? </a>
                 </div>
                 <div class="input-form submit-button">
                     <input type="submit" value="Đăng nhập" />
                 </div>
 
                 <div class="input-form">
-                    <p>Bạn Chưa Có Tài Khoản? <a asp-route="user/signup">Đăng Ký</a></p>
+                    <p>Bạn Chưa Có Tài Khoản? <a asp-area="Public" asp-controller="User" asp-action="SignUp">Đăng Ký</a></p>
                 </div>
             </form>
         </div>

@@ -168,6 +168,10 @@ public partial class ViettourContext : DbContext
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .HasColumnName("USERNAME");
+            entity.Property(e => e.CookieId)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("COOKIE_ID");
         });
 
         OnModelCreatingPartial(modelBuilder);
