@@ -153,6 +153,9 @@ div.box-2 {
 /* CSS for Tour section */
 .places-list {
     margin-top: 32px;
+    display:grid;
+    grid-gap: 20px;
+    grid-auto-flow: column;
 }
 
 .place-img {
@@ -175,6 +178,8 @@ body{
     border-radius: 0 0 10px 10px;
     height: 280px;
     cursor: pointer;
+    display: grid;
+    grid-template-rows: 1fr auto;
 }
 /*Hover mỗi phần tử Tour sẽ tối màu*/
 .col-content-1:hover{
@@ -205,6 +210,12 @@ body{
     font-weight: 500;
     font-size: 18px;
     font-family: 'Quicksand', sans-serif;
+}
+.place-content {
+    display: grid;
+    grid-template-columns: 200px;
+    /*khoảng cách cách content item*/
+    grid-template-rows: 25px 25px 25px 25px 25px;
 }
 
 /*Price*/
