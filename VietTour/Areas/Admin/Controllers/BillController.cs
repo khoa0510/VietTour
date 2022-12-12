@@ -2,6 +2,7 @@
 
 namespace VietTour.Areas.Admin.Controllers
 {
+	[Area("Admin")]
 	public class BillController : Controller
 	{
 		//List all payment, can sort

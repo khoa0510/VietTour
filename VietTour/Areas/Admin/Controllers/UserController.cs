@@ -5,6 +5,7 @@ using VietTour.Areas.Admin.Models;
 
 namespace VietTour.Areas.Admin.Controllers
 {
+	[Area("Admin")]
 	public class UserController : Controller
 	{
 		private readonly MainRepository _mainRepository;

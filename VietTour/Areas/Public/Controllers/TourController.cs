@@ -2,9 +2,10 @@
 
 namespace VietTour.Areas.Public.Controllers
 {
+    [Area("Public")]
     public class TourController : Controller
     {
-        [HttpGet]
+        [HttpGet] 
         public ActionResult Index()
         {
             return View();

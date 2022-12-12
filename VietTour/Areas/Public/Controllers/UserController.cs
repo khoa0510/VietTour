@@ -9,6 +9,7 @@ using VietTour.Areas.Public.Models;
 
 namespace VietTour.Areas.Public.Controllers
 {
+    [Area("Public")]
     public class UserController : Controller
     {
         private readonly MainRepository _mainRepository;
