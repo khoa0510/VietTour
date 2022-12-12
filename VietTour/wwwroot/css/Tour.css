@@ -1,0 +1,264 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Quicksand:wght@300;400;500;600;700&display=swap');
+/*font-family: 'Quicksand', sans-serif;*/
+html {
+    color: #292929;
+    font-size: 18px;
+}
+:root {
+    --web-color: #00C9FC;
+}
+
+* {
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.pad-15-25 {
+    padding: 15px 25px;
+}
+
+.pad-left-18 {
+    padding-left: 18px;
+}
+
+.btn {
+    color: #ffffff !important;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: #00c9fc;
+}
+
+.btn-yellow {
+    background-color: #F9DB0F;
+}
+
+.text-blue {
+    color: #00c9fc;
+}
+/*Banner*/
+.tour-detail-banner {
+    min-height: 600px;
+    top: 134px;
+    width: auto;
+    margin: 0 -113px;
+    background: url(/image/tour-banner.png) no-repeat center top;
+    background-size: cover;
+    display: block;
+}
+/*Search tour box*/
+.box-tour {
+    position: relative;
+    height: 200px;
+    background: #ffffff;
+    box-shadow: 0px 0px 30px rgb(0 0 0 / 15%);
+    border-radius: 20px;
+    z-index: 1;
+    bottom: 50px;
+}
+
+.box-search-tour {
+    position: relative;
+    top: 25px;
+    height: 200px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+    .form-group .search-input-field {
+        position: relative;
+        font-family: 'Quicksand', sans-serif;
+        width: 92%;
+        border: 1px solid #00c9fc;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 25px 30px 25px 70px;
+        left: 50%;
+        transform: translateX(-50%); 
+        
+    }
+
+
+
+    .form-group i {
+        position: absolute;
+        font-size: 40px;
+        color: #00c9fc;
+        left: 80px;
+    }
+/*Search tour button*/
+.box-search-tour .search-tour-button {
+    position: absolute;
+    padding: 11px 35px;
+    right: 52px;
+    margin-top: 23px;
+}
+
+.form-tour .box-search-tour a {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/*------Breadcrumb-----*/
+.breadcrumb {
+    list-style: none;
+    position: relative;
+    top: -20px;
+}
+
+    .breadcrumb li {
+        display: inline;
+    }
+
+        .breadcrumb li + li:before {
+            padding: 10px;
+            color: #292929;
+            content: "/\00a0";
+        }
+
+        .breadcrumb li a {
+            color: #292929;
+            text-decoration: none;
+        }
+
+            .breadcrumb li a:hover {
+                color: #00c9fc;
+                cursor: pointer;
+            }
+/*------Breadcrumb-----*/
+
+.content-section .places-list {
+    padding-left: 60px;
+}
+/* CSS for Tour section */
+.places-list {
+    margin-top: 32px;
+}
+
+.place-img {
+    width: 100%; /*Làm 3 tấm ảnh gọn trong cái khung */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+}
+
+/*Set khung cho 3 tấm anh*/
+.tour-section {
+    margin-right: 75px;
+}
+
+.place-body {
+    padding: 16px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+    background-color: white; /* khung chữ trắng nền */
+    border-radius: 0 0 10px 10px;
+    height: 260px;
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+
+/*Hover mỗi phần tử Tour sẽ tối màu*/
+.col-content-1:hover {
+    opacity: 0.78;
+}
+
+.col-content-2:hover {
+    opacity: 0.78;
+}
+
+.col-content-3:hover {
+    opacity: 0.78;
+}
+.col-content-4:hover {
+    opacity: 0.78;
+}
+
+.col-content-5:hover {
+    opacity: 0.78;
+}
+
+.col-content-6:hover {
+    opacity: 0.78;
+}
+
+/*Setting font for header*/
+.place-heading {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+}
+
+    .place-heading a {
+        color: black;
+        text-decoration: none;
+    }
+
+/*Place content*/
+.place-content .place-content-item {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+}
+/*CSS Grid cho item trong content tour*/
+.place-content{
+    display: grid;
+    /*chia thành 1 cột 200px và 5 hàng detail*/
+    grid-template-columns:200px;
+    grid-template-rows: 25px 25px 25px 25px 25px;
+
+
+}
+
+/*Price*/
+.tour-price {
+    color: var(--web-color);
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 22px;
+
+}
+
+/*More button*/
+.more-button {
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px -45px;
+    cursor: pointer;
+    margin-left: 590px;
+    margin-top: 60px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+    /*Hover vô button tìm kiếm*/
+    .more-button:hover {
+        text-decoration: none;
+        color: gray;
+    }
+/*CSS Grid cho các place*/
+.places-list{
+    display: grid;
+    grid-gap: 25px; /*Kc giữa các cột*/
+    grid-auto-flow: column;
+    /*Sắp xếp Grid 2 hàng 3 cột*/
+    grid-template-columns: 422px 422px 422px;
+    grid-template-rows: 570px 570px;
+    margin-left:-70px;
+}

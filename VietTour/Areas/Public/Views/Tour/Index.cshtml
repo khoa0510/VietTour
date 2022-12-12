@@ -1,8 +1,159 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@*HTML for Home Page - Tour/Index - Du lịch*@
+
 
 @{
     ViewBag.Title = "Du lịch";
- 
 }
+<link href="~/css/tour.css" rel="stylesheet" />
+<link href="~/font/fontawesome-free-6.2.0-web/css/all.css" rel="stylesheet" />
+<link href="~/font/fontawesome-free-6.2.0-web/css/all.min.css" rel="stylesheet" />
+
+<div class="tour-detail-banner"></div>   @*Banner*@
+@*Begin: Search tour box*@
+<div class="box-tour">
+	<div class="box-search-tour">
+		<div class="form-group">
+			<input type="text" placeholder="Nhập thành phố, địa điểm du lịch" class="search-input-field">
+			<i class="fa-solid fa-location-dot"></i>
+		</div>
+		<a href="#" class="btn btn-blue search-tour-button">Tìm kiếm</a>
+	</div>
+</div>
+@*End: Search tour box*@
+
+@*Breadcrumb*@
+<ul class="breadcrumb">
+	<li><a asp-area="public" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+	<li><a asp-area="public" asp-controller="Tour" asp-action="Index">Du lịch</a></li>
+	<li>Tour du lịch Đà Nẵng</li>
+</ul>
+
+@*--------Begin Tour------*@
+
+<div class="tour-section">
+    <div class="content-section">
+        <!--HOT Places-->
+        <div class="row places-list">
+            <!---------------------------------------------------------------->
+            @if (Model != null)
+            {
+                @foreach (var tour in Model.tourList)
+                {
+                    <div class="col col-content-1">
+                        <img src=@tour.imagesUrl>
+                        <div class="place-body place-1">
+                            <h3 class="place-heading">
+                                @*truyen toi detail*@
+                                <a asp-route="tour/detail" asp-route-id="@tour.tourId">@tour.TourName</a>
+                            </h3>
+                            <ul class="place-content">
+                                @tour.Summary
+                            </ul>
+                            @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                            <p class="tour-price"> @tour.Price</p>
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="col col-content-1">
+                <img src="~/image/image-tour-1.png" alt="" class="place-img">
+                <div class="place-body place-1">
+                    <h3 class="place-heading">
+                        <a href="">Tour Phú Quốc - Kỳ Co - Eo Gió</a>
+                    </h3>
+                    <ul class="place-content">
+                        <li class="place-content-item">Bãi tắm Kỳ Co</li>
+                        <li class="place-content-item">Eo Gió</li>
+                    </ul>
+                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    <p class="tour-price"> 1.550.000 VND</p>
+                </div>
+            </div>
+
+            <div class="col col-content-2">
+                <img src="~/image/image-tour-2.png" alt="" class="place-img">
+                <div class="place-body place-2 ">
+                    <h3 class="place-heading">
+                        <a href="">Tour khám phá Đà Nẵng - Sơn Trà - Hội An - Bà Nà</a>
+                    </h3>
+                    <ul class="place-content">
+                        <li class="place-content-item">Bán đảo Sơn Trà</li>
+                        <li class="place-content-item">Phố cổ Hội An</li>
+                        <li class="place-content-item">Cầu Rồng</li>
+                        <li class="place-content-item">Bà Nà Hill</li>
+                    </ul>
+                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    <p class="tour-price">2.930.000 VND</p>
+                </div>
+            </div>
+
+            <div class="col col-content-3">
+                <img src="~/image/image-tour-3.png" alt="" class="place-img">
+                <div class="place-body place-3">
+                    <h3 class="place-heading">
+                        <a href="">Tour Đà Lạt - Thung Lũng Tình Yêu - Dinh Bảo Đại</a>
+                    </h3>
+                    <ul class="place-content">
+                        <li class="place-content-item">Thung lũng Tình yêu</li>
+                        <li class="place-content-item">Dinh Bảo Đại</li>
+                    </ul>
+                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    <p class="tour-price">1.070.000 VND</p>
+                </div>
+            </div>
+
+            <div class="col col-content-4">
+                <img src="~/image/image-tour-3.png" alt="" class="place-img">
+                <div class="place-body place-4">
+                    <h3 class="place-heading">
+                        <a href="">Tour Đà Lạt - Thung Lũng Tình Yêu - Dinh Bảo Đại</a>
+                    </h3>
+                    <ul class="place-content">
+                        <li class="place-content-item">Thung lũng Tình yêu</li>
+                        <li class="place-content-item">Dinh Bảo Đại</li>
+                    </ul>
+                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    <p class="tour-price">1.070.000 VND</p>
+                </div>
+            </div>
+
+            <div class="col col-content-5">
+                <img src="~/image/image-tour-3.png" alt="" class="place-img">
+                <div class="place-body place-5">
+                    <h3 class="place-heading">
+                        <a href="">Tour Đà Lạt - Thung Lũng Tình Yêu - Dinh Bảo Đại</a>
+                    </h3>
+                    <ul class="place-content">
+                        <li class="place-content-item">Thung lũng Tình yêu</li>
+                        <li class="place-content-item">Dinh Bảo Đại</li>
+                    </ul>
+                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    <p class="tour-price">1.070.000 VND</p>
+                </div>
+            </div>
+              
+            <div class="col col-content-6">
+                <img src="~/image/image-tour-3.png" alt="" class="place-img">
+                <div class="place-body place-6">
+                    <h3 class="place-heading">
+                        <a href="">Tour Đà Lạt - Thung Lũng Tình Yêu - Dinh Bảo Đại</a>
+                    </h3>
+                    <ul class="place-content">
+                        <li class="place-content-item">Thung lũng Tình yêu</li>
+                        <li class="place-content-item">Dinh Bảo Đại</li>
+                    </ul>
+                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    <p class="tour-price">1.070.000 VND</p>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+     <a href="" class="more-button btn-blue">Xem thêm</a>
+    @*End HOT Place*@
+</div>
+@*------End Tour --------*@

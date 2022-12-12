@@ -15,7 +15,7 @@
     <header>
         <nav class="navbar ">
             <div class="container">
-                <a class="navbar-brand" asp-route="home/index"><img class="img" src="~/image/logo.png" alt="Viettour_Logo" /></a>             
+                <a class="navbar-brand" asp-area="public" asp-controller="Home" asp-action="Index"><img class="img" src="~/image/logo.png" alt="Viettour_Logo" /></a>             
                 
                 <div class="navbar-middle ">
 
@@ -56,12 +56,6 @@
             @RenderBody()
         </main>
     </div>
-    @*<footer class="footer">
-        <div class="container">
-            <a class="foot-content">
-                Copyright © 2022. Viettour. All Rights Reserved</a>
-        </div>       
-    </footer>*@
 	<footer class="text-white footer">
 		<div class="footer-top">
 			<div class="container">
@@ -69,9 +63,9 @@
                     <p class="fw-bold title">Liên kết trang</p>
                     <div class="content">
                         <ul class="content-list">
-                            <li class="content-item"><a href="">Trang chủ</a></li>
-                            <li class="content-item"><a href="">Du lịch</a></li>
-                            <li class="content-item"><a href="">Về chúng tôi</a></li>
+                            <li class="content-item"><a asp-area="public" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="content-item"><a asp-area="public" asp-controller="Tour" asp-action="Index">Du lịch</a></li>
+                            <li class="content-item"><a asp-area="public" asp-controller="Home" asp-action="About">Về chúng tôi</a></li>
                         </ul>
                     </div>
                 </div>
