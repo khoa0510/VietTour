@@ -1,50 +1,170 @@
-﻿
-
-@import url('https://fonts.googleapis.com/css2?family=Paytone+One&family=Quicksand:wght@300;400;500;600;700&display=swap');
-:root {
-    --web-color: #00C9FC;
-}
+﻿@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 * {
+    color: #292929;
     font-size: 18px;
+    font-weight: 500;
+    font-family: 'Quicksand', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
+
 body {
-    width: 1510px;
     height: 1000px;
 }
-/*1520*/
-.about-section {
-    width: 1519px;
-    height: 300px;
-    margin-left: -250px;
+
+.container {
+    overflow: auto;
 }
 
-.about-group .about-content-right {
-/*    font-family: 'Quicksand', sans-serif;
-    font-style: normal;
-    padding-top: 120px;
-    padding-left: 855px;
-    font-weight: 700;
-    color: black;*/
-
+.text-align-justify {
+    text-align: justify!important;
 }
-/*About banner*/
 
-.about-content-left{
-    width: 755px;
-    background-color: var(--web-color);
-    height: 300px;
+.text-align-center {
+    text-align: center!important;
+}
+
+.text-blue {
+    color: #00c9fc !important;
+}
+
+.text-yellow {
+    color: #F9DB0F !important;
+}
+
+.fs-40 {
+    font-size: 40px!important;
+}
+
+/*Slogan Header*/
+.welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-header {
+    display: block;
+    width: 60%;
+}
+
+.image-header {
+    position: relative;
+}
+
+.image-header .above-image {
+    position: relative;
+    width: 360px;
+    height: 496px;
+    border-radius: 0px 180px;
+}
+
+.image-header .below-image {
     position: absolute;
-    top: 129px;
+    width: 360px;
+    height: 496px;
+    mix-blend-mode: normal;
+    opacity: 0.15;
+    filter: blur(5px);
+    border-radius: 0px 180px;
+    bottom: -30px;
+    right: 30px;
 }
 
-/*CSS for about content*/
-.about-content-left p {
-    color: #ffff;
-    font-weight: bold;
-    font-family: 'Quicksand', sans-serif;
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 40px;
-    font-size: 30px;
+/*------------reason container------------*/
+.reason-container {
+    margin-top: 80px;
+}
+
+.reason-container .title-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reason-container .reason-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+}
+
+.reason-list .reason-1,
+.reason-list .reason-2,
+.reason-list .reason-3 {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgb(0 0 0 / 15%);
+    border-radius: 10px;
+    padding: 30px 20px;
+    cursor:pointer;
+    transition: 0.5s;
+}
+
+/*khi hover vào thì đối tượng sẽ di chuyển lên 1 đoạn*/
+.reason-list .reason-1:hover,
+.reason-list .reason-2:hover,
+.reason-list .reason-3:hover {
+    transform: translateY(-15px);
+    background-color: #00c9fc;
+}
+
+.reason-list .reason-1:hover .reason-title,
+.reason-list .reason-2:hover .reason-title,
+.reason-list .reason-3:hover .reason-title {
+    color: #ffffff;
+}
+
+.reason-list .reason-1:hover .reason-content,
+.reason-list .reason-2:hover .reason-content,
+.reason-list .reason-3:hover .reason-content {
+    color: #ffffff;
+}
+
+.reason-list .reason-title {
+    font-size: 24px;
+}
+
+.reason-list .reason-content {
+    padding: 0 25px;
+}
+
+/*---------mission container----------*/
+
+.mission-container {
+    margin: 100px 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mission-container .title-heading {
+    margin-bottom: 15px;
+}
+
+.mission-container .illustration {
+    max-width: 200px;
+    justify-self: end;
+    align-self: center;
+}
+
+
+/*-------------vision container------------*/
+.vision-container {
+    margin: 100px 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+.vision-container .illustration {
+    max-width: 200px;
+    justify-self: start;
+    align-self: center;
+}
+
+.vision-container .title-heading {
+    margin-bottom: 15px;
+}
+
+.vision-container .content {
+    grid-column: 2;
 }
