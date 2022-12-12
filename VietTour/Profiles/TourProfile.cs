@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using VietTour.Areas.Public.Models;
 using VietTour.Data.Entities;
 
 
@@ -8,7 +9,8 @@ namespace VietTour.Profiles
 	{
 		public TourProfile()
 		{
-			//CreateMap<TourDTO, Tour>();
-		}
+			CreateMap<Tour, TourComponent>();
+            CreateMap<Tour, TourDetailViewModel>();
+        }
 	}
 }

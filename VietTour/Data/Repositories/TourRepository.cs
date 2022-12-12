@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using VietTour.Data.Entities;
 
 namespace VietTour.Data.Repositories
@@ -13,10 +13,10 @@ namespace VietTour.Data.Repositories
 			_context = viettourContext;
 		}
 
-		public IEnumerable<Tour> GetAll(int pageNumber, int pageSize, string sortBy, string search)
+		public List<Tour> GetAll(int pageNumber, int pageSize, string? sortBy, string? search)
 		{
-			var tours = from t in _context.Tours select t;
-			if(!String.IsNullOrEmpty(search))
+			var tours = _context.Tours.AsNoTracking();
+			if(!string.IsNullOrEmpty(search))
 			{
 				tours = tours.Where(t => t.TourName.Contains(search) || t.Province.ProvinceName.Contains(search));
 			}
@@ -27,7 +27,13 @@ namespace VietTour.Data.Repositories
 				case "PRICE_DES":
 					tours = tours.OrderByDescending(t => t.Price); break;
 			}
-			return tours;
+			return tours.Skip(pageNumber).Take(pageSize).ToList();
 		}
-	}
+
+        public Tour GetTour(int id)
+        {
+			var tours = _context.Tours.SingleOrDefault(t => t.TourId == id);
+			return tours;
+        }
+    }
 }

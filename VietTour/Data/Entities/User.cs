@@ -19,6 +19,8 @@ public partial class User
 
     public bool? Admin { get; set; }
 
+    public string? CookieId { get; set; }
+
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 
     public virtual ICollection<Comment> Comments { get; } = new List<Comment>();

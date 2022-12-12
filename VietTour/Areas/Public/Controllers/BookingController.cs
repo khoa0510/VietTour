@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace VietTour.Areas.Public.Controllers
 {
     [Area("Public")]
+    [Authorize]
     public class BookingController : Controller
     {
         [HttpGet]
