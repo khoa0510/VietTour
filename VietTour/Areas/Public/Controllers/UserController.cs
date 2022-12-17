@@ -74,8 +74,8 @@ namespace VietTour.Areas.Public.Controllers
                     new Claim("Username", checkedUser.Username??""),
                     new Claim("Email", checkedUser.Username??""),
                 };
-                if (checkedUser.Admin == true) claims.Add(new Claim("Admin", ""));
-                else claims.Add(new Claim("User", ""));
+                if (checkedUser.Admin == true) claims.Add(new Claim("Role", "Admin"));
+                else claims.Add(new Claim("Role", "User"));
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
