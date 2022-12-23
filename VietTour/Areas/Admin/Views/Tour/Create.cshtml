@@ -1,32 +1,27 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Tour";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @model CreateTourViewModel
 <div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">THÊM TOUR</h3>
-    </div>
     <!-- /.card-header -->
     <!-- form start -->
 
-    <form action="~/Admin/Home/Index" method="post" enctype="multipart/form-data" >
+    <form method="post" enctype="multipart/form-data">
         <div class="card-body">
-            <input type="hidden" name="TourId" @*value="@Model.TourId"*@/>
+            <input type="hidden" name="TourId" @*value="@Model.TourId"*@ />
             <div class="form-group">
                 <label for="TourName">Tên Tour</label>
                 <input type="text" class="form-control" id="TourName" name="TourName" @*value="@Model.TourName"*@ placeholder="Nhập tên Tour">
             </div>
 
             <div class="form-group">
-                <label for="Summary">Mô tả ngắn</label>
-                <textarea class="form-control" id="Summary" name="Summary" @*value="@Model.Summary"*@></textarea>
+                <label for="Summary">Địa điểm nổi bật</label>
+                <textarea class="form-control summernote" id="Summary" name="Summary" @*value="@Model.Summary"*@></textarea>
             </div>
 
             <div class="form-group">
                 <label for="ProvinceId">Vùng miền</label>
-                <textarea class="form-control" id="ProvinceId" name="ProvinceId" @*value="@Model.ProvinceId"*@></textarea>
+                <select asp-items="@(new SelectList(ViewBag.ProvinceList))" asp-for="Province" class="form-control" id="Province" name="Province"></select>
             </div>
 
             <div class="form-group">
@@ -44,28 +39,22 @@
             </div>
 
             <div class="form-group">
-                <label for="Description">Nội dung</label>
+                <label for="Description">Chi tiết Tour</label>
                 <textarea class="form-control summernote" id="Description" name="Description" @*value="@Model.Description"*@></textarea>
             </div>
         </div>
+
         <!-- /.card-body -->
         @*Lưu*@
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
     </form>
+
+        <script>
+            $('.summernote').summernote({
+                tabsize: 2,
+                height: 100
+            });
+        </script>
 </div>
-@section Js{
-    <!-- Summernote -->
-    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-    <script>
-        $(function () {
-            // Summernote
-            $('.summernote').summernote()
-        })
-    </script>
-}
-@section Css{
-    <!-- summernote -->
-    <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
-}

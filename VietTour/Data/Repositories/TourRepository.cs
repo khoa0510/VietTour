@@ -23,11 +23,11 @@ namespace VietTour.Data.Repositories
 			switch (sortBy)
 			{
 				case "PRICE":
-					tours = tours.OrderBy(t => t.Price); break;
-				case "PRICE_DES":
-					tours = tours.OrderByDescending(t => t.Price); break;
-			}
-			return tours.Skip(pageNumber).Take(pageSize).ToList();
+                    return tours.OrderBy(t => t.Price).Skip(pageNumber).Take(pageSize).ToList();
+                case "PRICE_DES":
+                    return tours.OrderByDescending(t => t.Price).Skip(pageNumber).Take(pageSize).ToList();
+            }
+			return tours.OrderBy(t => t.TourName).Skip(pageNumber).Take(pageSize).ToList();
 		}
 
         public Tour GetTour(int id)
