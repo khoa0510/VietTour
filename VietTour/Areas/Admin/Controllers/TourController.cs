@@ -1,16 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using VietTour.Areas.Admin.Models;
+using VietTour.Areas.Public.Models;
+using VietTour.Data.Entities;
+using VietTour.Data.Repositories;
 
 namespace VietTour.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class TourController : Controller
     {
-        List<string> ProvinceList = new List<string>
+        private readonly MainRepository _mainRepository;
+        private readonly List<string?> _provinceList;
+
+        public TourController(MainRepository mainRepository)
         {
-            "Ha Noi",
-            "TP.HCM"
-        };
+            _mainRepository = mainRepository;
+            _provinceList = _mainRepository.TourRepository.GetProvinceList();
+        }
 
         [HttpGet]
         public ActionResult Index()
@@ -27,7 +34,7 @@ namespace VietTour.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.ProvinceList = ProvinceList;
+            ViewBag.ProvinceList = _provinceList;
             return View();
         }
 
@@ -35,16 +42,20 @@ namespace VietTour.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateTourViewModel createTourViewModel)
         {
-            bool err = false;
-            //Thêm hàm check sau
-            if (err)
+            if (!ModelState.IsValid)
             {
                 return View(createTourViewModel);
             }
+
+            if (_mainRepository.TourRepository.CreateTour(createTourViewModel))
+            {
+                TempData["Status"] = "Tạo Tour thành công";
+            }
             else
             {
-                return RedirectToAction("Index", "Home");
+                TempData["Status"] = "Tạo Tour thất bại";
             }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

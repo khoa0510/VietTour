@@ -1,10 +1,13 @@
-﻿namespace VietTour.Areas.Public.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VietTour.Areas.Public.Models
 {
     public class LogInViewModel
     {
-        // LogIn bằng sdt
+        [Required]
+        [Phone]
         public string? Phone { get; set; }
-
+        [Required]
         public string? Password { get; set; }
 
     }
