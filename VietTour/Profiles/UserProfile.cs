@@ -8,9 +8,7 @@ namespace VietTour.Profiles
     {
         public UserProfile() {
             CreateMap<SignUpViewModel, User>();
-            CreateMap<LogInViewModel, User>();
-            CreateMap<EditUserViewModel, User>();
-            CreateMap<User, EditUserViewModel>();
+            CreateMap<User, UserDetailViewModel>();
         }
     }
 }

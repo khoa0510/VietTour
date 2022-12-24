@@ -16,12 +16,10 @@ namespace VietTour.Areas.Public.Controllers
     public class UserController : Controller
     {
         private readonly MainRepository _mainRepository;
-        private readonly IMapper _mapper;
 
-        public UserController(MainRepository mainRepository, IMapper mapper)
+        public UserController(MainRepository mainRepository)
         {
             _mainRepository = mainRepository;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,8 +32,11 @@ namespace VietTour.Areas.Public.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(SignUpViewModel signUpViewModel)
         {
-            var user = _mapper.Map<User>(signUpViewModel);
-            bool err = !_mainRepository.UserRepository.SignUp(user);
+            if (!ModelState.IsValid)
+            {
+                return View(signUpViewModel);
+            }
+            bool err = !_mainRepository.UserRepository.SignUp(signUpViewModel);
             if (err)
             {
                 TempData["Status"] = "Tài khoản đã tồn tại";
@@ -59,8 +60,11 @@ namespace VietTour.Areas.Public.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogIn(LogInViewModel logInViewModel)
         {
-            var user = _mapper.Map<User>(logInViewModel);
-			User checkedUser = _mainRepository.UserRepository.VerifyPassword(user);
+            if (!ModelState.IsValid)
+            {
+                return View(logInViewModel);
+            }
+            User? checkedUser = _mainRepository.UserRepository.VerifyPassword(logInViewModel);
 			if (checkedUser == null)
 			{
                 TempData["Status"] = "Sai số điện thoại hoặc mật khẩu";
@@ -129,8 +133,8 @@ namespace VietTour.Areas.Public.Controllers
                 catch (SmtpException ex)
                 {
                     Console.WriteLine(ex.ToString());
-                }*/
-                return RedirectToAction("Index", "Home");
+                }
+                return RedirectToAction("Index", "Home");*/
             }
         }
 
@@ -141,10 +145,9 @@ namespace VietTour.Areas.Public.Controllers
             string? id = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
             if (id == null)
                 return RedirectToAction("Index", "Home");
-            User? user = _mainRepository.UserRepository.GetUserDetail(id);
-            if (user == null)
+            UserDetailViewModel? userDetailViewModel = _mainRepository.UserRepository.GetUserDetail(id);
+            if (userDetailViewModel == null)
                 return RedirectToAction("Index", "Home");
-            var userDetailViewModel = _mapper.Map<UserDetailViewModel>(user);
             return View(userDetailViewModel);
         }
 
@@ -155,27 +158,30 @@ namespace VietTour.Areas.Public.Controllers
             string? id = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
             if (id == null)
                 return RedirectToAction("Index", "Home");
-            User? user = _mainRepository.UserRepository.GetUserDetail(id);
+            UserDetailViewModel? user = _mainRepository.UserRepository.GetUserDetail(id);
             if (user == null)
                 return RedirectToAction("Index", "Home");
-            var editUserViewModel = _mapper.Map<EditUserViewModel>(user);
-            return View(editUserViewModel);
+            return View(user);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit(EditUserViewModel editUserViewModel)
+        public ActionResult Edit(UserDetailViewModel userDetailViewModel)
         {
-            User user = _mapper.Map<User>(editUserViewModel);
-            user.CookieId = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
-            if (user.CookieId == null)
+            if (!ModelState.IsValid)
+            {
+                TempData["Status"] = "Nhập sai thông tin, vui lòng kiểm tra lại";
+                return View(userDetailViewModel);
+            }
+            var cookieId = User.Claims.FirstOrDefault(c => c.Type == "ID")?.Value;
+            if (cookieId == null)
                 return RedirectToAction("Index", "Home");
-            bool err = _mainRepository.UserRepository.EditUser(user);
+            bool err = _mainRepository.UserRepository.EditUser(userDetailViewModel, cookieId);
             if (err)
             {
                 TempData["Status"] = "Không thể cập nhật thông tin, vui lòng kiểm tra lại";
-                return View(editUserViewModel);
+                return View(userDetailViewModel);
             }
             else
             {
