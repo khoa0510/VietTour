@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Trang chủ";
 }
-
+<!--Sử dụng nhờ Home View-->
+                                                <!--TOUR-LIST->
 @model TourViewModel
 <div class="row">
     <div class="col-12">
@@ -18,10 +19,11 @@
                             <th>Tên Tour</th>
                             <th>Mô tả ngắn</th>
                             <th>Giá</th>
+                            <th>Tính năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                       @* @foreach(var item in Model)
+                       @foreach(var item in Model)
                         {
                             <tr>
                                 <td>@item.TourId</td>
@@ -30,8 +32,16 @@
                                 </td>
                                 <td> @item.Summary</td>
                                 <td> @item.Price</td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Tour" asp-action="Edit" class="edit" title="Sửa" style="margin-right:10px;">
+                                        Sửa
+                                     </a>
+                                     <a href="#" class="delete" title="Xóa">
+                                         Xoá
+                                      </a>
+                                </td>
                             </tr>
-                        }*@
+                        }
                       
                     </tbody>
                 </table>

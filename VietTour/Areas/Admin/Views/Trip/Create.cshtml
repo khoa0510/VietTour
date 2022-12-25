@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+                                                                <!--TRIP CREATE-->
+@model CreateTripViewModel
+<div class="card card-primary">
+    <!-- /.card-header -->
+    <!-- form start -->
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="TourId">Mã Tour</label>
+                <input type="text" class="form-control" id="TourId" name="TourId" @*value="@Model.TourId"*@ placeholder="Nhập mã Tour">
+            </div>
+
+            <div class="form-group">
+                <label for="DayStart">Ngày bắt đầu</label>
+                <input type="datetime" class="form-control" id="DayStart" name="DayStart" @*value="@Model.DayStart"*@ placeholder="Nhập ngày bắt đầu">
+            </div>
+
+            <div class="form-group">
+                <label for="Capacity">Số lượng khách</label>
+                <input type="number" class="form-control" id="Capacity" name="Capacity" @*value="@Model.Capacity"*@ placeholder="Nhập lượng khách">
+            </div>
+
+        </div>
+
+        <!-- /.card-body -->
+        @*Lưu*@
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+</div>
+

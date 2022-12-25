@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+                                                                    <!--TRIP-LIST-->
+@*@model TripComponent*@
+@*@model TripViewModel*@
+<body>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title" style="margin-left: 500px;">DANH SÁCH CHUYẾN ĐI</h2>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="trip" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Trip ID</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Số lượng</th>
+                             
+                                <th>Tính năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in Model)
+                            {
+                            <tr>
+                            <td>@item.TripId</td>
+                            <td>
+                            @item.DayStart
+                            </td>
+                            <td> @item.Capacity</td>
+                            <td>
+                                        <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" class="edit" title="Sửa" style="margin-right:10px;">
+                                            Sửa
+                                        </a>
+                                        <a href="#" class="delete" title="Xóa">
+                                            Xoá
+                                        </a>
+                            </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+</body>
+

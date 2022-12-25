@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@model UserComponent*@
+@*@model UserViewModel*@
+<body>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title" style="margin-left: 500px;">DANH SÁCH USER</h2>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="user" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Username</th>
+                                <th>Address</th>
+                                @*mới thêm*@
+                                <th>Tính năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    
+                                </td>
+                                <td></td>
+                                <td> </td>
+                                <td>
+                                    @*Chỉnh trực tiếp trên data , xong lưu*@
+                                    <a href="#" class="Add" title="Thêm">
+                                        Thêm
+                                    </a>
+                                </td>
+                            </tr>
+                            @*  @foreach(var item in Model)
+                            {
+                            <tr>
+                            <td>@item.Email</td>
+                            <td>
+                            @item.Phone
+                            </td>
+                            <td> @item.Username</td>
+                            <td> @item.Address</td>
+                            </tr>
+                            }*@
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+</body>
