@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using VietTour.Areas.Admin.Models;
-using VietTour.Areas.Public.Models;
-using VietTour.Data.Entities;
 using VietTour.Data.Repositories;
 
 namespace VietTour.Areas.Admin.Controllers
@@ -40,7 +37,7 @@ namespace VietTour.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateTourViewModel createTourViewModel)
+        public ActionResult Create([FromForm]CreateTourViewModel createTourViewModel)
         {
             if (!ModelState.IsValid)
             {

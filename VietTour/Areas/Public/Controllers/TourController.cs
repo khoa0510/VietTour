@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using VietTour.Areas.Public.Models;
+using VietTour.Areas.Shared.Models;
 using VietTour.Data.Entities;
 using VietTour.Data.Repositories;
 
@@ -23,12 +24,7 @@ namespace VietTour.Areas.Public.Controllers
         {
             int pageSize = 12;
             int pageNumber = page ?? 1;
-            List<Tour> tours = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search);
-            List<TourComponent> listTour = new();
-            foreach (var tour in tours)
-            {
-                listTour.Add(_mapper.Map<TourComponent>(tour));
-            }
+            List<TourComponent> listTour = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search);
             TourViewModel tourViewModel = new() {
                 tourList = listTour
             };

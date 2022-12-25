@@ -1,4 +1,4 @@
-﻿using VietTour.Areas.Admin.Models;
+﻿using VietTour.Areas.Shared.Models;
 
 namespace VietTour.Areas.Admin.Models
 {

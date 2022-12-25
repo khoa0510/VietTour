@@ -17,6 +17,8 @@ public partial class Tour
 
     public int? ProvinceId { get; set; }
 
+    public Byte[] Picture { get; set; }
+
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 
     public virtual ICollection<Comment> Comments { get; } = new List<Comment>();

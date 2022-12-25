@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VietTour.Areas.Admin.Models
 {
@@ -19,5 +21,9 @@ namespace VietTour.Areas.Admin.Models
 
         [Required]
         public string? ProvinceName { get; set; }
+
+        [FromForm]
+        [NotMapped]
+        public IFormFile PictureFile { get; set; }
     }
 }

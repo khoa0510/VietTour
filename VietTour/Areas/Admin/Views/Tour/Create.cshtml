@@ -21,14 +21,17 @@
 
             <div class="form-group">
                 <label for="ProvinceId">Vùng miền</label>
-                <select asp-items="@(new SelectList(ViewBag.ProvinceList))" class="form-control" id="Province" name="ProvinceName"></select>
+                @Html.DropDownListFor(m => m.ProvinceName,
+                new SelectList(ViewBag.ProvinceList),
+                "Chọn vùng miền",
+                new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                <label for="Picture">Hình ảnh</label>
+                <label for="PictureFile">Hình ảnh</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="form-control" id="Picture">
+                        <input type="file" class="form-control" id="PictureFile" name="PictureFile">
                     </div>
                 </div>
             </div>
