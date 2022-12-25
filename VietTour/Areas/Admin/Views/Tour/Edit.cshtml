@@ -1,15 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Tour";
+    ViewData["Title"] = "Index";
+    //Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-                                                                <!--TOUR CREATE-->
-@model CreateTourViewModel
+                                                    <!--EDIT TOUR-->
+@model EditTourViewModel
 <div class="card card-primary">
     <!-- /.card-header -->
     <!-- form start -->
 
     <form method="post" enctype="multipart/form-data">
         <div class="card-body">
-            <input type="hidden" name="TourId" @*value="@Model.TourId"*@ />
+            <div class="form-group">
+                <label for="TourId">Mã Tour</label>
+                <input type="text" class="form-control" id="TourId" name="TourId" @*value="@Model.TourName"*@ placeholder="Nhập tên Tour">
+            </div>
+
             <div class="form-group">
                 <label for="TourName">Tên Tour</label>
                 <input type="text" class="form-control" id="TourName" name="TourName" @*value="@Model.TourName"*@ placeholder="Nhập tên Tour">
@@ -22,20 +27,17 @@
 
             <div class="form-group">
                 <label for="ProvinceId">Vùng miền</label>
-                @Html.DropDownListFor(m => m.ProvinceName,
-                new SelectList(ViewBag.ProvinceList),
-                "Chọn vùng miền",
-                new { @class = "form-control" })
+                <select asp-items="@(new SelectList(ViewBag.ProvinceList))" class="form-control" id="Province" name="ProvinceName"></select>
             </div>
-
-            <div class="form-group">
-                <label for="PictureFile">Hình ảnh</label>
+            <!--SAO EM THẤY EDIT TOUR VIEWMODEL KHÔNG CÓ ẢNH, VẬY SAO EDIT ẢNH NÊN EM CMT LẠI NHA-->
+@*            <div class="form-group">
+                <label for="Picture">Hình ảnh</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="form-control" id="PictureFile" name="PictureFile">
+                        <input type="file" class="form-control" id="Picture">
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <label for="Price">Giá Tour</label>
@@ -49,16 +51,15 @@
         </div>
 
         <!-- /.card-body -->
-        @*Lưu*@
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Lưu</button>
         </div>
     </form>
 
-        <script>
-            $('.summernote').summernote({
-                tabsize: 2,
-                height: 100
-            });
-        </script>
+    <script>
+        $('.summernote').summernote({
+            tabsize: 2,
+            height: 100
+        });
+    </script>
 </div>
