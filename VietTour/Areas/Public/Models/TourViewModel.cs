@@ -1,4 +1,4 @@
-﻿using VietTour.Areas.Public.Models;
+﻿using VietTour.Areas.Shared.Models;
 
 namespace VietTour.Areas.Public.Models
 {

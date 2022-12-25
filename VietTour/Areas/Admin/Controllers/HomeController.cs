@@ -23,8 +23,11 @@ namespace VietTour.Areas.Admin.Controllers
 		{
 			int pageNumber = page ?? 1;
 			int pageSize = 12;
-			var tourList = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search);
-            return View();
+            TourViewModel tourViewModel = new()
+            {
+                tourList = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search)
+            };
+            return View(tourViewModel);
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -16,6 +16,7 @@
                     <thead>
                         <tr>
                             <th>Mã Tour</th>
+                            <th>Hình ảnh</th>
                             <th>Tên Tour</th>
                             <th>Mô tả ngắn</th>
                             <th>Giá</th>
@@ -23,14 +24,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                       @foreach(var item in Model)
+                        @foreach (var item in Model.tourList)
                         {
                             <tr>
-                                <td>@item.TourId</td>
-                                <td>
-                                    @item.TourName
-                                </td>
-                                <td> @item.Summary</td>
+                                <td> @item.TourId </td>
+                                <td> <img src="@item.Image" alt="" class="img-fluid"> </td>
+                                <td> @item.TourName </td>
+                                <td> @Html.Raw(@item.Summary)</td>
                                 <td> @item.Price</td>
                                 <td>
                                     <a asp-area="Admin" asp-controller="Tour" asp-action="Edit" class="edit" title="Sửa" style="margin-right:10px;">
@@ -42,7 +42,6 @@
                                 </td>
                             </tr>
                         }
-                      
                     </tbody>
                 </table>
             </div>
