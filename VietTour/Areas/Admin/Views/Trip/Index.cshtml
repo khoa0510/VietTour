@@ -1,11 +1,9 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
                                                                     <!--TRIP-LIST-->
-@*@model TripComponent*@
-@*@model TripViewModel*@
+@model TripViewModel
 <body>
     <div class="row">
         <div class="col-12">
@@ -26,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model)
+                            @foreach(var item in Model.tripList)
                             {
                             <tr>
                             <td>@item.TripId</td>
