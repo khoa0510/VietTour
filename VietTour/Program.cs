@@ -13,7 +13,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Customer", policy => policy.RequireClaim("User"));
     options.AddPolicy("Employee", policy => policy.RequireClaim("Admin"));
 });
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

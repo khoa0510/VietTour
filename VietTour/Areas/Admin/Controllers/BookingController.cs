@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace VietTour.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class BookingController : Controller
+    [Authorize(Policy = "Employee")]
+    public class BookingController : Controller
 	{
 		[HttpGet]
 		public ActionResult Index()

@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using VietTour.Data.Repositories;
 using VietTour.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VietTour.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class UserController : Controller
+    [Authorize(Policy = "Employee")]
+    public class UserController : Controller
 	{
 		private readonly MainRepository _mainRepository;
 		private readonly IMapper _mapper;

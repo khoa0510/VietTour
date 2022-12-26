@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VietTour.Areas.Admin.Models;
 using VietTour.Data.Repositories;
 
 namespace VietTour.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class TripController : Controller
+    [Authorize(Policy = "Employee")]
+    public class TripController : Controller
 	{
         private readonly MainRepository _mainRepository;
 

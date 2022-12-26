@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -7,8 +6,6 @@ using VietTour.Data.Entities;
 using VietTour.Data.Repositories;
 using VietTour.Areas.Public.Models;
 using Microsoft.AspNetCore.Authorization;
-using System.Net.Mail;
-using System.Net;
 
 namespace VietTour.Areas.Public.Controllers
 {
@@ -78,8 +75,7 @@ namespace VietTour.Areas.Public.Controllers
                     new Claim("Username", checkedUser.Username??""),
                     new Claim("Email", checkedUser.Username??""),
                 };
-                if (checkedUser.Admin == true) claims.Add(new Claim("Role", "Admin"));
-                else claims.Add(new Claim("Role", "User"));
+                if (checkedUser.Admin == true) claims.Add(new Claim("Admin", "true" ));
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -91,12 +87,12 @@ namespace VietTour.Areas.Public.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
-        public async Task Logout()
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

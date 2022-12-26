@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace VietTour.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class BillController : Controller
+    [Authorize(Policy = "Employee")]
+    public class BillController : Controller
 	{
 		//List all payment, can sort
 		[HttpGet]
