@@ -1,6 +1,4 @@
-﻿using VietTour.Areas.Public.Models;
-
-namespace VietTour.Areas.Public.Models
+﻿namespace VietTour.Areas.Public.Models
 {
     public class TourDetailViewModel
     {
@@ -12,7 +10,7 @@ namespace VietTour.Areas.Public.Models
         public int price { get; set; }
 
         // Danh sách các ngày của tour
-        public List<TripComponent> tripList { get; set; }
+        public List<DateTime> tripList { get; set; }
 
         // số khách
         public int capacity { get; set; }
@@ -20,10 +18,5 @@ namespace VietTour.Areas.Public.Models
 
         //COMMENTS
         public List<CommentComponent> commentList { get; set; }
-
-
-
-
-
     }
 }

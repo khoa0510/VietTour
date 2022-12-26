@@ -33,10 +33,10 @@
                             </td>
                             <td> @item.Capacity</td>
                             <td>
-                                        <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" class="edit" title="Sửa" style="margin-right:10px;">
+                                        <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" asp-route-id=@item.TripId class="edit" title="Sửa" style="margin-right:10px;">
                                             Sửa
                                         </a>
-                                        <a href="#" class="delete" title="Xóa">
+                                        <a asp-area="Admin" asp-controller="Trip" asp-action="Delete" asp-route-id=@item.TripId class="delete" title="Xóa">
                                             Xoá
                                         </a>
                             </td>

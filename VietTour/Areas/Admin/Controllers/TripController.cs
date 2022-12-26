@@ -1,14 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VietTour.Areas.Admin.Models;
+using VietTour.Data.Repositories;
 
 namespace VietTour.Areas.Admin.Controllers
 {
 	[Area("Admin")]
 	public class TripController : Controller
 	{
-		[HttpGet]
-		public ActionResult Index()
+        private readonly MainRepository _mainRepository;
+
+        public TripController(MainRepository mainRepository)
+        {
+            _mainRepository = mainRepository;
+        }
+
+        [HttpGet]
+		public ActionResult Index(int? page, string sortBy, string search)
 		{
-			return View();
+            int pageNumber = page ?? 1;
+            int pageSize = 12;
+			TripViewModel tripViewModel = new()
+			{
+				tripList = _mainRepository.TripRepository.GetAll(pageNumber, pageSize, sortBy, search)
+			};
+            return View(tripViewModel);
 		}
 
 		//Get trips by tour
@@ -26,33 +41,30 @@ namespace VietTour.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(CreateTripViewModel createTripViewModel)
 		{
-			bool err = false;
-			//Thêm hàm check sau
-			if (err)
+			if (!ModelState.IsValid)
 			{
-				return View(collection);
+				return View(createTripViewModel);
 			}
 			else
 			{
-				return RedirectToAction(nameof(Index));
+				_mainRepository.TripRepository.Create(createTripViewModel);
+				return RedirectToAction("Index", "Home");
 			}
 		}
 
 		[HttpGet]
-		public ActionResult Edit(int tour_id, int trip_id)
+		public ActionResult Edit(int id)
 		{
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int tour_id, int trip_id, IFormCollection collection)
+		public ActionResult Edit(int id, IFormCollection collection)
 		{
-			bool err = false;
-			//Thêm hàm check sau
-			if (err)
+			if (!ModelState.IsValid)
 			{
 				return View(collection);
 			}
@@ -64,15 +76,16 @@ namespace VietTour.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int tour_id, int trip_id)
+		public ActionResult Delete(int id)
 		{
 			try
 			{
+				_mainRepository.TripRepository.Delete(id);
 				return RedirectToAction(nameof(Index));
 			}
 			catch
 			{
-				return View();
+				return RedirectToAction(nameof(Index)); ;
 			}
 		}
 	}
