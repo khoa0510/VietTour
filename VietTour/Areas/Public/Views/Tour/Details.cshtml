@@ -1,10 +1,13 @@
 ﻿@{
-	ViewData["Title"] = "Tour Detail";
+	ViewData["Title"] = "Chi tiết tour";
 }
+@*HTML for Details page - Tour/Details - Chi tiết tour*@
 
 <link href="~/css/tourdetail.css" rel="stylesheet" />
 <link href="~/font/fontawesome-free-6.2.0-web/css/all.css" rel="stylesheet" />
 <link href="~/font/fontawesome-free-6.2.0-web/css/all.min.css" rel="stylesheet" />
+@*Bootstrap datepicker*@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 <html>
 <div class="tour-detail-banner"></div>   @*Banner*@
@@ -12,7 +15,7 @@
 <div class="box-tour">
 	<div class="box-search-tour">
 		<div class="form-group">
-			<input type="text" placeholder="Nhập thành phố, địa điểm du lịch" class="search-input-field">
+			<input type="search" placeholder="Nhập thành phố, địa điểm du lịch" class="search-input-field">
 			<i class="fa-solid fa-location-dot"></i>
 		</div>
 		<a href="#" class="btn btn-blue search-tour-button">Tìm kiếm</a>
@@ -22,7 +25,7 @@
 
 @*Breadcrumb*@
 <ul class="breadcrumb">
-	<li><a href="#">Trang chủ</a></li>
+	@*<li><a href="#">Trang chủ</a></li>*@
 	<li><a href="#">Du lịch</a></li>
 	<li>Tour du lịch Đà Nẵng</li>
 </ul>
@@ -32,28 +35,32 @@
 	<h2 class="tour-title">Tour khám phá Đà Nẵng - Sơn Trà - Hội An - Bà Nà</h2>
 	<div class="tour-container">
 		<div class="tour-content">
-			<div class="tour-cover"></div>
-			<div class="tour-info-belowCover">
-				<div class="content-belowCover">
-					<span class="tour-placename">
-						<i class="fa-solid fa-location-dot"></i>
-						Đà Nẵng
-					</span>
-					<span class="tour-time">
-						<i class="fa-solid fa-clock"></i>
-						3 Ngày 2 Đêm
-					</span>
-					<span class="tour-transports">
-						Phương tiện:
-						<i class="fa-solid fa-train-subway"></i>
-						<i class="fa-solid fa-ship"></i>
-					</span>
-					<div class="tour-code">
-						Mã tour:
-						<b class="text-blue">T12510</b>
+			@*thêm class cover-shortinfo để bọc 2 class: tour-cover và tour-info-belowCover*@
+			<div class="cover-shortinfo">
+				<div class="tour-cover"></div>
+				<div class="tour-info-belowCover">
+					<div class="content-belowCover">
+						<span class="tour-placename">
+							<i class="fa-solid fa-location-dot"></i>
+							Đà Nẵng
+						</span>
+						<span class="tour-time">
+							<i class="fa-solid fa-clock"></i>
+							3 Ngày 2 Đêm
+						</span>
+						<span class="tour-transports">
+							Phương tiện:
+							<i class="fa-solid fa-train-subway"></i>
+							<i class="fa-solid fa-ship"></i>
+						</span>
+						<div class="tour-code">
+							Mã tour:
+							<b class="text-blue">T12510</b>
+						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="outstanding-place-content">
 				<div class="pad-15-25">
 					<h3 class="fw-bold">Địa điểm nổi bật</h3>
@@ -65,7 +72,8 @@
 					</ul>
 				</div>
 			</div>
-			<div class="margin-top-10 tour-detail-content">
+			@*Chi tiết tour*@
+			<div class="tour-detail-content">
 				<div class="pad-15-25">
 					<h3 class="fw-bold">Chi tiết tour</h3>
 					<div class="pad-left-18">
@@ -95,7 +103,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="margin-top-10 comment">
+			@*Bình luận*@
+			<div class="comment">
 				<div class=pad-15-25>
 					<p class="fw-bold comment-title">Đánh giá khách hàng về trải nghiệm tour du lịch</p>
 					<div class="customer-review-detail-container">
@@ -156,36 +165,220 @@
 				</div>
 			</div>
 		</div>
+		@*Begin: Sidebar chọn ngày khởi hành, nhập số lượng khách để đặt tour*@
 		<div class="sidebar-content">
 			<div class="tour-form-price">
-				<div id="tour-sidebar" class="affix-top">
-					<div class="upper-sidebar">
-						<div class="booking-box">
-							<form action="">
-								<div class="input-form">
-									<label>Ngày khởi hành</label>
-									<input type="datetime" name="dateField" placeholder="Chọn ngày">
+				@*<div id="tour-sidebar" class="affix-top">*@
+				<div class="upper-sidebar">
+					<div class="booking-box">
+						<form action="">
+							<div class="form-box-input dep-date">
+								<label class="fw-bold title">Ngày khởi hành</label>
+								@*<input type="date" placeholder="Chọn ngày" id="departure-date" class="form-control" autocomplete="off" required>*@
+								<div class="tour-droplist-content">
+									<div class="select-box">
+										<div class="options-container">
+											<div class="option">
+												<input type="radio" class="radio" id="date1" name="category" />
+												<label for="date1">25/12/2022</label>
+											</div>
+
+											<div class="option">
+												<input type="radio" class="radio" id="date2" name="category" />
+												<label for="date2">26/12/2022</label>
+											</div>
+
+											<div class="option">
+												<input type="radio" class="radio" id="date3" name="category" />
+												<label for="date3">27/12/2022</label>
+											</div>
+
+											<div class="option">
+												<input type="radio" class="radio" id="date4" name="category" />
+												<label for="date4">28/12/2022</label>
+											</div>
+
+											<div class="option">
+												<input type="radio" class="radio" id="date5" name="category" />
+												<label for="date5">29/12/2022</label>
+											</div>
+
+											<div class="option">
+												<input type="radio" class="radio" id="date6" name="category" />
+												<label for="date6">30/12/2022</label>
+											</div>
+
+											<div class="option">
+												<input type="radio" class="radio" id="date7" name="category" />
+												<label for="date7">31/12/2022</label>
+											</div>
+										</div>
+
+										<div class="selected">
+											Chọn ngày
+										</div>
+									</div>
 								</div>
-								<div class="input-form">
-									<label>Số khách</label>
-									<input type="text" name="" placeholder="Nhập số khách">
-								</div>
-								<div class="input-form">
-									<button class="sign-up-button">Đăng Kí </button>
-								</div>
-							</form>
-							
+							</div>
+							<div class="form-box-input quantity">
+								<label class="fw-bold title">Số khách</label>
+								<input type="number" min="0" placeholder="Nhập số khách" id="passenger-quantity" class="form-control" autocomplete="off" required
+									   oninput="this.value =!!this.value && Math.abs(this.value)>= 0 ? Math.abs(this.value) : null">
+							</div>
+							<div class="total-info">
+								<label class="fw-bold title">Tổng cộng</label>
+								<p class="fw-bold text-yellow total-price">
+									2.930.000
+									<span class="fw-bold currency">VND</span>
+								</p>
+							</div>
+							<button class="btn btn-yellow booking-button">ĐẶT TOUR </button>
+						</form>
+					</div>
+				</div>
+				@*Begin: Liên hệ tư vấn*@
+				<div class="lower-sidebar">
+					<div class="margin-top-10 tour-service">
+						<div class="col-6 tour-service-item">
+							<span>
+								<i class="fa-solid fa-check"></i>Bảo hiểm
+							</span>
+						</div>
+						<div class="col-6 tour-service-item">
+							<span>
+								<i class="fa-solid fa-check"></i>Bữa ăn
+							</span>
+						</div>
+						<div class="col-6 tour-service-item">
+							<span>
+								<i class="fa-solid fa-check"></i>Xe đưa đón
+							</span>
+						</div>
+						<div class="col-6 tour-service-item">
+							<span>
+								<i class="fa-solid fa-check"></i>Vé tham quan
+							</span>
+						</div>
+						<div class="col-6 tour-service-item">
+							<span>
+								<i class="fa-solid fa-check"></i>Hướng dẫn viên
+							</span>
 						</div>
 					</div>
-					<div class="lower-sidebar"></div>
+					<div class="clear consultancy">
+						<div class="text-white btn-blue title">Liên hệ tư vấn</div>
+						<div class="fw-bold consultancy-info">Vui lòng gọi:<span class="fw-bold" style="color:#00c9fc;font-size:36px;padding: 0 10px;">1900 0256</span></div>
+					</div>
+				</div>
+				@*End: Liên hệ tư vấn*@
+				@*</div>*@
+			</div>
+		</div>
+		@*End: Sidebar chọn ngày khởi hành, nhập số lượng khách để đặt tour*@
+
+	</div>
+	@*Begin: Các tour du lịch tương tự*@
+	<div class="recommended-tour-container">
+		<h3 class="fw-bold recommended-tour-title">Tour du lịch liên quan</h3>
+		@foreach (var tour in Model.tourList)
+		{
+			<div class="col col-content-1">
+				<img src=@tour.imagesUrl>
+				<div class="place-body place-1">
+					<h3 class="place-heading">
+						@*truyen toi detail*@
+						<a asp-route="tour/detail" asp-route-id="@tour.tourId">@tour.TourName</a>
+					</h3>
+					<ul class="place-content">
+						@tour.Summary
+					</ul>
+					@*Sau này lấy giá trị trong Models ra thay thành biến*@
+					<p class="tour-price"> @tour.Price</p>
 				</div>
 			</div>
-			
+		}
+		<div class="row recommended-tour">
+			<div class="col col-content">
+				<img src="~/image/image-tour-2.png" alt="" class="place-img">
+				<div class="place-body place-2 ">
+					<h3 class="place-heading">
+						<a href="">Tour khám phá Đà Nẵng - Sơn Trà - Hội An - Bà Nà</a>
+					</h3>
+					<ul class="place-content">
+						<li class="place-content-item">Bán đảo Sơn Trà</li>
+						<li class="place-content-item">Phố cổ Hội An</li>
+						<li class="place-content-item">Cầu Rồng</li>
+						<li class="place-content-item">Bà Nà Hill</li>
+					</ul>
+					@*Sau này lấy giá trị trong Models ra thay thành biến*@
+					<p class="tour-price">2.930.000 VND</p>
+				</div>
+			</div>
+			<div class="col col-content">
+				<img src="~/image/image-tour-2.png" alt="" class="place-img">
+				<div class="place-body place-2 ">
+					<h3 class="place-heading">
+						<a href="">Tour khám phá Đà Nẵng - Sơn Trà - Hội An - Bà Nà</a>
+					</h3>
+					<ul class="place-content">
+						<li class="place-content-item">Bán đảo Sơn Trà</li>
+						<li class="place-content-item">Phố cổ Hội An</li>
+						<li class="place-content-item">Cầu Rồng</li>
+						<li class="place-content-item">Bà Nà Hill</li>
+					</ul>
+					@*Sau này lấy giá trị trong Models ra thay thành biến*@
+					<p class="tour-price">2.930.000 VND</p>
+				</div>
+			</div>
+			<div class="col col-content">
+				<img src="~/image/image-tour-2.png" alt="" class="place-img">
+				<div class="place-body place-2 ">
+					<h3 class="place-heading">
+						<a href="">Tour khám phá Đà Nẵng - Sơn Trà - Hội An - Bà Nà</a>
+					</h3>
+					<ul class="place-content">
+						<li class="place-content-item">Bán đảo Sơn Trà</li>
+						<li class="place-content-item">Phố cổ Hội An</li>
+						<li class="place-content-item">Cầu Rồng</li>
+						<li class="place-content-item">Bà Nà Hill</li>
+					</ul>
+					@*Sau này lấy giá trị trong Models ra thay thành biến*@
+					<p class="tour-price">2.930.000 VND</p>
+				</div>
+			</div>
+		</div>
+		<div class="showmore">
+			<a href="#" class="btn btn-blue showmore-button">Xem thêm</a>
 		</div>
 	</div>
-	
+	@*End: Các tour du lịch tương tự*@
+
 </div>
+
+@*Template datepicker cho phần input ngày khởi hành*@
+@*<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>*@
+<script>
+	//config = {
+	//	enableTime: false,
+	//	dateFormat: "d/m/Y",
+	//	minDate: "today"
+	//}
+	//flatpickr("input[type=date]", config);
+
+	const selected = document.querySelector(".selected");
+	const optionsContainer = document.querySelector(".options-container");
+
+	const optionsList = document.querySelectorAll(".option");
+
+	selected.addEventListener("click", () => {
+		optionsContainer.classList.toggle("active");
+	});
+
+	optionsList.forEach(o => {
+		o.addEventListener("click", () => {
+			selected.innerHTML = o.querySelector("label").innerHTML;
+			optionsContainer.classList.remove("active");
+		});
+	});
+</script>
 </html>
-
-
-

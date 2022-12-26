@@ -20,7 +20,7 @@ namespace VietTour.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View();  
         }
 
         [HttpPost]

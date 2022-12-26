@@ -58,23 +58,29 @@
 
 
                         <!--TRANG CHỦ-->
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link active">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Trang chủ
                                 </p>
                             </a>
-                        </li>
+                        </li>*@
                         <!--QUẢN LÝ TOUR THÊM SỬA-->
                         <li class="nav-item ">
-                            <a  class="nav-link ">
+                            <a  class="nav-link active">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Quản lý Tour
                                 </p>
                             </a>
                             <ul class="nav">
+                                <li class="nav-item">
+                                    <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a asp-area="Admin" asp-controller="Tour" asp-action="Create" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -115,6 +121,22 @@
                                     <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sửa chuyến đi</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link ">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Booking
+                                </p>
+                            </a>
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a asp-area="Admin" asp-controller="Booking" asp-action="Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách</p>
                                     </a>
                                 </li>
                             </ul>
