@@ -34,12 +34,6 @@ namespace VietTour.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.ProvinceList = _provinceList;
@@ -52,6 +46,7 @@ namespace VietTour.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ProvinceList = _provinceList;
                 return View(createTourViewModel);
             }
 
@@ -76,16 +71,16 @@ namespace VietTour.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EditTourViewModel editTourViewModel)
         {
-            bool err = false;
-            //Thêm hàm check sau
-            if (err)
+            if (!ModelState.IsValid)
             {
-                return View(collection);
+                ViewBag.ProvinceList = _provinceList;
+                return View(editTourViewModel);
             }
             else
             {
+                _mainRepository.TourRepository.EditTour(id, editTourViewModel);
                 return RedirectToAction(nameof(Index));
             }
         }

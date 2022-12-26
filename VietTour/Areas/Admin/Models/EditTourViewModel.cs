@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VietTour.Areas.Admin.Models
 {
     public class EditTourViewModel
     {
-        public int TourId { get; set; }
-
         public string? TourName { get; set; }
 
         public string? Summary { get; set; }
@@ -17,10 +16,10 @@ namespace VietTour.Areas.Admin.Models
 
         public string ProvinceName { get; set; }
 
-        public string Picture { get; set; }
+        public string? Picture { get; set; }
 
         [FromForm]
         [NotMapped]
-        public IFormFile PictureFile { get; set; }
+        public IFormFile? PictureFile { get; set; }
     }
 }

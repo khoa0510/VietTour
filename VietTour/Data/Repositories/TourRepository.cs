@@ -77,6 +77,28 @@ namespace VietTour.Data.Repositories
             return true;
         }
 
+        public bool EditTour(int id, EditTourViewModel editTourViewModel)
+        {
+            var tour = _context.Tours.SingleOrDefault(t => t.TourId == id);
+            if (tour == null) return false;
+
+            //if (tour.TourName != editTourViewModel.TourName)
+            tour.TourName = editTourViewModel.TourName;
+            //if (tour.Summary = editTourViewModel.Summary)
+            tour.Summary = editTourViewModel.Summary;
+            //if (tour.Description != editTourViewModel.Description)
+            tour.Description = editTourViewModel.Description;
+            //if (tour.Price != editTourViewModel.Price)
+            tour.Price = editTourViewModel.Price;
+            tour.ProvinceId = _context.Provinces.SingleOrDefault(p => p.ProvinceName == editTourViewModel.ProvinceName)?.ProvinceId;
+
+            if (editTourViewModel.PictureFile?.Length > 0)
+                tour.Picture = FileImageToByte(editTourViewModel.PictureFile);
+
+            _context.SaveChanges();
+            return true;
+        }
+
         public bool DeleteTour(int id)
         {
             Tour tour = _context.Tours.SingleOrDefault(t => t.TourId == id);
