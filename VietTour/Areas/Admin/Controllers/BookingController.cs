@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
+using VietTour.Areas.Admin.Models;
+using VietTour.Data.Repositories;
 
 namespace VietTour.Areas.Admin.Controllers
 {
@@ -7,66 +11,53 @@ namespace VietTour.Areas.Admin.Controllers
     [Authorize(Policy = "Employee")]
     public class BookingController : Controller
 	{
-		[HttpGet]
-		public ActionResult Index()
-		{
-			return View();
-		}
+        private readonly MainRepository _mainRepository;
+		private readonly List<string> _payList;
 
-		[HttpGet]
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
-
-        [HttpGet]
-        public ActionResult Create()
+        public BookingController(MainRepository mainRepository)
         {
-            return View();  
+            _mainRepository = mainRepository;
+			_payList = new List<string>()
+			{
+				"Chưa thanh toán",
+				"Đã thanh toán"
+			};
         }
 
-        [HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+        [HttpGet]
+		public ActionResult Index(int? page, string sortBy, string search)
 		{
-			bool err = false;
-			//Thêm hàm check sau
-			if (err)
+            int pageNumber = page ?? 1;
+			int pageSize = 12;
+			BookingViewModel bookingList = new()
 			{
-				return View(collection);
-			}
-			else
-			{
-				return RedirectToAction(nameof(Index));
-			}
+				BookingList = _mainRepository.BookingRepository.GetAll(pageNumber, pageSize, sortBy, search)
+			};
+			return View(bookingList);
 		}
 
 		[HttpGet]
 		public ActionResult Edit(int id)
 		{
-			return View();
+			EditBookingViewModel editBookingViewModel = _mainRepository.BookingRepository.GetBooking(id);
+			ViewBag.TripList = _mainRepository.TripRepository.ListTripTimeByTour(editBookingViewModel.TourId);
+			ViewBag.PayList = _payList;
+            return View(editBookingViewModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, EditBookingViewModel editBookingViewModel)
 		{
-			bool err = false;
-			//Thêm hàm check sau
-			if (err)
-			{
-				return View(collection);
-			}
-			else
-			{
+				_mainRepository.BookingRepository.EditBooking(id, editBookingViewModel);
 				return RedirectToAction(nameof(Index));
-			}
 		}
 
-		[HttpPost]
+		[HttpGet]
 		public ActionResult Delete(int id)
 		{
-			return View();
+			_mainRepository.BookingRepository.DeleteBooking(id);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

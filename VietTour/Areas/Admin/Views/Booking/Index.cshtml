@@ -1,7 +1,5 @@
-﻿ 
-@{
-    ViewData["Title"] = "Booking";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+﻿@{
+    ViewData["Title"] = "Quản lý lịch khách đã đặt";
 }
 
                                                             <!--BOOKING-LIST-->
@@ -17,30 +15,29 @@
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Mã Tour</th>
+                            <th>Mã đơn đặt</th>
                             <th>Tên Tour</th>
                             <th>Người đặt</th>
-                            <th>Ngày đặt</th>
-                            <th>Ghi chú</th>
+                            <th>Tình trạng</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.BookingList)
                         {
                             <tr>
-                                <td> @item.TourId </td>
+                                <td> @item.BookingId </td>
                                 <td> @item.TourName </td>
                                 <td> @item.Username</td>
-                                <td> @item.Create_Day</td>
+                                <td> @(item.IsPaid? "Đã thanh toán" : "Chưa thanh toán")</td>
                                 <td>
-                                    <a asp-area="Admin" asp-controller="Booking" asp-action="Edit" asp-route-id=@item.TourId class="edit" title="Sửa" style="margin-right:10px;">
+                                    <a asp-area="Admin" asp-controller="Booking" asp-action="Edit" asp-route-id=@item.BookingId class="edit" title="Sửa" style="margin-right:10px;">
                                         Sửa
                                     </a>
-                                    <a href="#" class="delete" title="Xóa">
+                                    <a asp-area="Admin" asp-controller="Booking" asp-action="Delete" asp-route-id=@item.BookingId class="delete" title="Xóa">
                                         Xoá
                                     </a>
                                 </td>
-                                <td>@item.Note</td>
                             </tr>
                         }
                     </tbody>

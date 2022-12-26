@@ -84,26 +84,6 @@
                                     Quản lý chuyến đi
                                 </p>
                             </a>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="Trip" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="Trip" asp-action="Create" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Thêm chuyến đi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sửa chuyến đi</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item ">
                             <a asp-area="Admin" asp-controller="Booking" asp-action="Index" class=@(ViewContext.RouteData.Values["Controller"].ToString() == "Booking" ? "nav-link active" : "nav-link")>
@@ -112,14 +92,6 @@
                                     Booking
                                 </p>
                             </a>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="Booking" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <!--THÔNG TIN USER-->
                         <li class="nav-item">
@@ -129,20 +101,6 @@
                                     Thông tin User
                                 </p>
                             </a>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="Admin" asp-controller="User" asp-action="Edit" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sửa User</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -163,7 +121,7 @@
                         <div class="col-sm-6">
                             <h1 class="m-0">@ViewData["Title"]</h1>
                         </div><!-- /.col -->
-                        @if (ViewContext.RouteData.Values["Controller"].ToString() != "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Index")
+                        @if ((ViewContext.RouteData.Values["Controller"].ToString() == "Tour" || ViewContext.RouteData.Values["Controller"].ToString() == "Trip")&& ViewContext.RouteData.Values["Action"].ToString() == "Index")
                         {
                             <div class="col-sm-6">
                                 <a asp-action="Create" class="btn btn-primary float-right">Thêm mới</a>

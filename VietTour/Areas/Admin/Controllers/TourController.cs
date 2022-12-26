@@ -12,12 +12,10 @@ namespace VietTour.Areas.Admin.Controllers
     {
         private readonly MainRepository _mainRepository;
         private readonly List<string?> _provinceList;
-        private readonly IMapper _mapper;
 
         public TourController(MainRepository mainRepository, IMapper mapper)
         {
             _mainRepository = mainRepository;
-            _mapper = mapper;
             _provinceList = _mainRepository.TourRepository.GetProvinceList();
         }
 

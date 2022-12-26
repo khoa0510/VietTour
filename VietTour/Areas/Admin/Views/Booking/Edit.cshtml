@@ -1,7 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Update";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Sửa lịch đã đặt";
 }
 
 @model EditBookingViewModel
@@ -12,24 +11,37 @@
     <form method="post" enctype="multipart/form-data">
         <div class="card-body">
             <div class="form-group">
-                <label for="DayStart">Ngày</label>
-             @*   @Html.DropDownListFor(m => m.DayStart,
-                new SelectList(ViewBag.ProvinceList),
-                "Chọn vùng miền",
-                new { @class = "form-control" })*@
+                <label for="">Tên tour</label>
+                <p class="form-control">@Model.TourName</p>
             </div>
-            <div class="form-group">
-                <label for="">Đổi thanh toán</label>
 
+            <div class="form-group">
+                <label for="DayStart">Ngày khởi hành</label>
+                @Html.DropDownListFor(m => m.DayStart,
+                new SelectList(ViewBag.TripList),
+                new { @class = "form-control" })
             </div>
+            
             <div class="form-group">
                 <label for="Capacity">Số người</label>
-                <input type="number" class="form-control" id="Capacity" name="Capacity" @*value="@Model.Capacity"*@ placeholder="Nhập số người">
+                <input type="number" class="form-control" id="Passengers" name="Passengers" value="@Model.Passengers" placeholder="Nhập số người">
+            </div>
+
+            <div class="form-group">
+                <label for="">Ngày đặt lịch</label>
+                <p class="form-control">@Model.CreateDate</p>
+            </div>
+
+            <div class="form-group">
+                <label for="Paydate">Thanh toán</label>
+                @Html.DropDownListFor(m => m.IsPaid,
+                new SelectList(ViewBag.PayList),
+                new { @class = "form-control" })
             </div>
 
             <div class="form-group">
                 <label for="Note">Ghi chú</label>
-                <textarea class="form-control summernote" id="Note" name="Note" @*value="@Model.Note"*@></textarea>
+                <textarea class="form-control summernote" id="Note" name="Note" value="@Model.Note"></textarea>
             </div>
         </div>
 

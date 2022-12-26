@@ -27,11 +27,11 @@ namespace VietTour.Data.Repositories
             }
             List<Tour> tourList;
             if (sortBy == "PRICE")
-                tourList = tours.OrderBy(t => t.Price).Skip(pageNumber).Take(pageSize).ToList();
+                tourList = tours.OrderBy(t => t.Price).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             else if (sortBy == "PRICE_DES")
-                tourList = tours.OrderByDescending(t => t.Price).Skip(pageNumber).Take(pageSize).ToList();
+                tourList = tours.OrderByDescending(t => t.Price).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             else
-                tourList = tours.Skip(pageNumber).Take(pageSize).ToList();
+                tourList = tours.Skip(pageSize*(pageNumber-1)).Take(pageSize).ToList();
             List<TourComponent> tourComponents = new List<TourComponent>();
             foreach (var tour in tourList)
             {

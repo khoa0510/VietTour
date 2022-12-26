@@ -9,13 +9,13 @@ public partial class Booking
 
     public int? UserId { get; set; }
 
-    public int? TourId { get; set; }
+    public int TourId { get; set; }
 
-    public int? TripId { get; set; }
+    public int TripId { get; set; }
 
-    public int? Passengers { get; set; }
+    public int Passengers { get; set; }
 
-    public DateTime? CreateDate { get; set; }
+    public DateTime CreateDate { get; set; }
 
     public DateTime? PayDate { get; set; }
 

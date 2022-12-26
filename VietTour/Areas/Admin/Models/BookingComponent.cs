@@ -2,16 +2,16 @@
 {
     public class BookingComponent
     {
+        public int BookingId { get; set; }
         //Id Tour
-        public int TourId { get; set; }
-        //Username đặt
+
         public string? Username { get; set; }
+
         //Tên Tour
         public string? TourName { get; set; }
 
-        //Ngày bắt đầu
-        public DateTime Create_Day { get; set; }
+        public int? Passengers { get; set; }
 
-        public string? Note { get; set; }
+        public bool IsPaid { get; set; }
     }
 }

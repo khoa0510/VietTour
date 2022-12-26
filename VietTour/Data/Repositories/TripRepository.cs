@@ -25,8 +25,8 @@ namespace VietTour.Data.Repositories
             }
             List<Trip> tripList;
             if (sortBy == "DAY_DES")
-                tripList = trips.OrderByDescending(t => t.DayStart).Skip(pageNumber).Take(pageSize).ToList();
-            else tripList = trips.OrderBy(t => t.DayStart).Skip(pageNumber).Take(pageSize).ToList();
+                tripList = trips.OrderByDescending(t => t.DayStart).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+            else tripList = trips.OrderBy(t => t.DayStart).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             
             List<TripComponent> tripComponents = new List<TripComponent>();
             foreach (var trip in tripList)
@@ -67,6 +67,12 @@ namespace VietTour.Data.Repositories
             var trip = _context.Trips.SingleOrDefault(t => t.TripId == TripId);
             _context.Remove(trip);
             _context.SaveChanges();
+        }
+
+        public List<DateTime> ListTripTimeByTour(int tourId)
+        {
+            var list = _context.Trips.Select(t => t.DayStart);
+            return list.ToList();
         }
     }
 }
