@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model EditBookingViewModel
+<div class="card card-primary">
+    <!-- /.card-header -->
+    <!-- form start -->
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="DayStart">Ngày</label>
+             @*   @Html.DropDownListFor(m => m.DayStart,
+                new SelectList(ViewBag.ProvinceList),
+                "Chọn vùng miền",
+                new { @class = "form-control" })*@
+            </div>
+            <div class="form-group">
+                <label for="">Đổi thanh toán</label>
+
+            </div>
+            <div class="form-group">
+                <label for="Capacity">Số người</label>
+                <input type="number" class="form-control" id="Capacity" name="Capacity" @*value="@Model.Capacity"*@ placeholder="Nhập số người">
+            </div>
+
+            <div class="form-group">
+                <label for="Note">Ghi chú</label>
+                <textarea class="form-control summernote" id="Note" name="Note" @*value="@Model.Note"*@></textarea>
+            </div>
+        </div>
+
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+    </form>
+
+    <script>
+        $('.summernote').summernote({
+            tabsize: 2,
+            height: 100
+        });
+    </script>
+</div>
+

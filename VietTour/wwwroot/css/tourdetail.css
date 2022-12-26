@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 * {
-    font-family: 'Quicksand', sans-serif;    
+    font-family: 'Quicksand', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -12,9 +12,14 @@ html {
     font-size: 18px;
 }
 
+.clear {
+    clear: both;
+}
+
 .margin-top-10 {
     margin-top: 10px;
 }
+
 
 .pad-15-25 {
     padding: 15px 25px;
@@ -22,6 +27,10 @@ html {
 
 .pad-left-18 {
     padding-left: 18px;
+}
+
+.col-6 {
+    float: left;
 }
 
 .btn {
@@ -41,7 +50,11 @@ html {
 }
 
 .text-blue {
-    color: #00c9fc;
+    color: #00c9fc !important;
+}
+
+.text-yellow {
+    color: #F9DB0F !important;
 }
 
 /*main code*/
@@ -50,13 +63,12 @@ html {
 .tour-detail-banner {
     min-height: 600px;
     top: 134px;
-    width: auto;
+    width: 100vw;
     margin: 0 -113px;
     background: url(/image/tour-detail-banner.png) no-repeat center top;
     background-size: cover;
     display: block;
 }
-
 /*Search tour box*/
 .box-tour {
     position: relative;
@@ -79,25 +91,26 @@ html {
     align-items: center;
 }
 
-.form-group .search-input-field {
-    position: relative;
-    font-family: 'Quicksand', sans-serif;
-    width: 92%;
-    border: 1px solid #00c9fc;
-    border-radius: 10px;
-    font-size: 18px;
-    padding: 25px 30px 25px 70px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+    .form-group .search-input-field {
+        position: relative;
+        font-family: 'Quicksand', sans-serif;
+        width: 92%;
+        border: 1px solid #00c9fc;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 25px 30px 25px 70px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
-.form-group i {
-    position: absolute;
-    font-size: 40px;
-    color: #00c9fc;
-    left: 80px;
-}
 
+
+    .form-group i {
+        position: absolute;
+        font-size: 40px;
+        color: #00c9fc;
+        left: 80px;
+    }
 /*Search tour button*/
 .box-search-tour .search-tour-button {
     position: absolute;
@@ -118,25 +131,25 @@ html {
     top: -20px;
 }
 
-.breadcrumb li {
-    display: inline;
-}
+    .breadcrumb li {
+        display: inline;
+    }
 
-.breadcrumb li + li:before {
-    padding: 10px;
-    color: #292929;
-    content: "/\00a0";
-}
+        .breadcrumb li + li:before {
+            padding: 10px;
+            color: #292929;
+            content: "/\00a0";
+        }
 
-.breadcrumb li a {
-    color: #292929;
-    text-decoration: none;
-}
+        .breadcrumb li a {
+            color: #292929;
+            text-decoration: none;
+        }
 
-.breadcrumb li a:hover {
-    color: #00c9fc;
-    cursor: pointer;
-}
+            .breadcrumb li a:hover {
+                color: #00c9fc;
+                cursor: pointer;
+            }
 /*------Breadcrumb-----*/
 
 
@@ -144,17 +157,38 @@ html {
 .tour-detail-section {
 }
 
-.tour-detail-section .tour-title {
-    font-weight: 700;
-    position:relative;
-    bottom: 25px;
-}
+    .tour-detail-section .tour-title {
+        font-weight: 700;
+        position: relative;
+        bottom: 25px;
+    }
 
-.tour-container {
-}
+    /*Tạo grid: tour content vs sidebar, */
+    .tour-detail-section .tour-container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 1fr 1fr; /* change the 100px to your desired height of the footer*/
+        grid-template-areas:
+            'left upper'
+            'left lower';
+        height: auto;
+        grid-gap: 30px;
+    }
 
-.tour-content {
+.tour-container .tour-content {
     position: relative;
+    grid-area: left;
+    display: grid;
+    grid-template-rows: auto auot auto auto;
+    grid-gap: 15px;
+}
+
+.tour-container .sidebar-content .upper-sidebar {
+    grid-area: upper;
+}
+
+.tour-container .sidebar-content .lower-sidebar {
+    grid-area: lower;
 }
 
 .tour-cover {
@@ -167,10 +201,6 @@ html {
 /*--------Tour info below tour cover------*/
 .tour-info-belowCover {
     margin: 15px 0;
-}
-
-.content-belowCover {
-
 }
 
 .content-belowCover span {
@@ -190,7 +220,7 @@ html {
     float: right;
     font-weight: 700;
 }
-/*-------Tour info below tour cover--------*/
+
 
 /*-------Outstanding place-------*/
 .outstanding-place-content, .tour-detail-content {
@@ -198,20 +228,19 @@ html {
     height: auto;
 }
 
-.outstanding-place-content h3 {
-    margin: 5px 0px;
-}
+    .outstanding-place-content h3 {
+        margin: 5px 0px;
+    }
 
-.outstanding-place-content .tour-content li {
-    font-weight: 500;
-}
+    .outstanding-place-content .tour-content li {
+        font-weight: 500;
+    }
 
-/*-------Tour-detail-content-------*/
+    /*-------Tour-detail-content-------*/
 
-.tour-detail-content .tour-content h3{
-    margin: 5px 0px;
-}
-/*-------Tour-detail-content-------*/
+    .tour-detail-content .tour-content h3 {
+        margin: 5px 0px;
+    }
 
 /*-------Comment--------*/
 
@@ -221,53 +250,309 @@ html {
     height: auto;
 }
 
-.comment .comment-title {
-    font-size: 24px;
+    .comment .comment-title {
+        font-size: 24px;
+    }
+
+    .comment .customer-review-detail-container .review-info-container {
+        margin: 0 15px;
+    }
+
+    .comment .customer-review-detail .horizontal-line {
+        border-bottom: 1px solid #E0E0E0;
+        margin: 5px -10px;
+    }
+
+    .comment .customer-review-detail .customername-date p {
+        display: inline-block;
+    }
+
+    .comment .customer-review-detail .customername-date {
+        margin-bottom: -10px;
+    }
+
+    .comment .customer-review-detail .comment-date {
+        font-size: 11px;
+        margin-left: 10px;
+    }
+
+.showmore {
+    margin: 20px 0;
 }
 
-.comment .customer-review-detail-container .review-info-container {
-    margin: 0 15px;
-}
-
-.comment .customer-review-detail .horizontal-line {
-    border-bottom: 1px solid #E0E0E0;
-    margin: 5px -10px;
-}
-
-.comment .customer-review-detail .customername-date p {
-    display: inline-block;
-}
-
-.comment .customer-review-detail .customername-date {
-    margin-bottom: -10px;
-}
-
-.comment .customer-review-detail .comment-date {
-    font-size: 11px;
-    margin-left: 10px;
-}
-
-.comment .showmore-button {
+.showmore-button {
     position: relative;
     padding: 11px 35px;
-    margin: 10px 0px;
     left: 50%;
     transform: translateX(-50%);
 }
-/*-------Comment--------*/
 
 /*Side bar*/
-.tour-container .sidebar-content {
+.sidebar-content .upper-sidebar {
     position: relative;
     background: #ffffff;
-    height: auto;
+    border-radius: 10px;
 }
 
-input[type="date"] {
-    width: 300px;
-    min-height: 50px;
-    background: #F0A500 url(icon.png);
-    background-size: 30px;
-    background-repeat: no-repeat;
-    background-position: 90%
+    /*::-webkit-input-placeholder {
+    color: #fff;
+}*/
+
+    .sidebar-content .upper-sidebar .quantity {
+        margin-top: 5px;
+    }
+
+    .sidebar-content .upper-sidebar .booking-box {
+        padding: 30px;
+        border-radius: 10px;
+        border: #00c9fc solid;
+    }
+
+.sidebar-content .booking-box .title {
+    font-size: 21px;
+    margin: 10px 0;
+    line-height: 23px;
 }
+
+/*#departure-date {
+    padding-left: 55px;
+    min-height: 50px;
+    background: #fff url(/image/fa-solid_calendar-days.png) no-repeat 15px center;
+    color: #434343;
+    font-size: 16px;
+    height: 32px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+    border: none;
+    border-radius: 10px;
+}*/
+
+#passenger-quantity {
+    padding: 12px 24px;
+    min-height: 50px;
+    /*background: url(/image/bi_person-plus-fill.png) no-repeat 15px center;*/
+    color: #434343;
+    font-size: 18px;
+    height: 32px;
+    /*    right: 15px;
+    top: 0px;*/
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+    border: none;
+    border-radius: 10px;
+}
+
+
+/*-----------------------------------*/
+/*Sidebar*/
+.sidebar-content {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 85vh;
+}
+
+    /*upper sidebar*/
+    .sidebar-content .upper-sidebar .total-info {
+        padding-top: 20px;
+    }
+
+    .sidebar-content .upper-sidebar .total-price {
+        font-size: 32px;
+        line-height: 20px;
+    }
+
+    .sidebar-content .upper-sidebar .booking-button {
+        width: 100%;
+        padding: 11px 0;
+    }
+
+    /*Lower sidebar*/
+
+    .sidebar-content .lower-sidebar i.fa-check {
+        color: #00c9fc;
+        margin-right: 5px;
+    }
+
+.lower-sidebar .consultancy {
+    padding-top: 10px;
+}
+
+    .lower-sidebar .consultancy .title {
+        width: 100%;
+        padding: 11px 0;
+        font-weight: 600;
+        border-radius: 10px;
+        text-align: center;
+        cursor: default;
+    }
+
+    .lower-sidebar .consultancy .consultancy-info {
+        padding: 10px 0;
+    }
+
+/*Recommended tour*/
+.recommended-tour-container .recommended-tour-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.recommended-tour-container .recommended-tour .place-content {
+    padding-left: 30px;
+}
+
+.place-img {
+    width: 100%; /*Làm 3 tấm ảnh gọn trong cái khung */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+}
+
+/*Set khung cho 3 tấm anh*/
+.tour-section {
+    margin-right: 75px;
+}
+
+body {
+    height: 2000px;
+}
+
+.place-body {
+    padding: 16px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.20);
+    background-color: white; /* khung chữ trắng nền */
+    border-radius: 0 0 10px 10px;
+    height: 280px;
+    cursor: pointer;
+}
+/*Hover mỗi phần tử Tour sẽ tối màu*/
+.col-content-1:hover {
+    opacity: 0.78;
+}
+
+.col-content-2:hover {
+    opacity: 0.78;
+}
+
+.col-content-3:hover {
+    opacity: 0.78;
+}
+
+/*Setting font for header*/
+.place-heading {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+}
+
+    .place-heading a {
+        font-size: 22px;
+        color: black;
+        text-decoration: none;
+    }
+
+/*Place content*/
+.place-content .place-content-item {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/*Price*/
+.tour-price {
+    color: #00c9fc;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.recommended-tour-container h3 {
+    margin: 20px 0;
+}
+
+
+/*----------------------------------------------------------------*/
+/*
+    Ngày khởi hành
+*/
+
+.tour-droplist-content .select-box {
+    display: flex;
+    flex-direction: column;
+}
+
+    .tour-droplist-content .select-box .options-container {
+        background: #ffffff;
+        color: #434343;
+        max-height: 0;
+        width: 100%;
+        opacity: 0;
+        transition: all 0.4s;
+        border-radius: 8px;
+        overflow: hidden;
+        order: 1;
+    }
+
+    .tour-droplist-content .select-box .selected {
+        font-size: 16px;
+        color: #434343;
+        background: #ffffff;
+        box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        position: relative;
+        order: 0;
+    }
+
+        .tour-droplist-content .select-box .selected::after {
+            content: "";
+            background: url(../image/arrow-down.jpg) no-repeat 15px center;
+            position: absolute;
+            height: 100%;
+            width: 32px;
+            right: 15px;
+            top: 0px;
+            transition: all 0.4s;
+        }
+
+    .tour-droplist-content .select-box .options-container.active {
+        max-height: 240px;
+        box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+        opacity: 1;
+        overflow-y: scroll;
+    }
+
+.select-box .options-container.active + .selected::after {
+    transform: rotateX(180deg);
+    top: -6px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+    width: 8px;
+    background: #d5d5d5;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+    background: #999999;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+    .select-box .option:hover {
+        background: #00c9fc;
+    }
+
+.select-box label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.select-box .option .radio {
+    display: none;
+}
+/*
+    Ngày khởi hành
+*/
