@@ -12,7 +12,9 @@ namespace VietTour.Profiles
 		public TourProfile()
 		{
 			CreateMap<CreateTourViewModel, Tour>();
-			CreateMap<Tour, TourComponent>();
+            CreateMap<Tour, EditTourViewModel>();
+            CreateMap<EditTourViewModel, Tour>();
+            CreateMap<Tour, TourComponent>();
             CreateMap<Tour, TourDetailViewModel>();
         }
 	}

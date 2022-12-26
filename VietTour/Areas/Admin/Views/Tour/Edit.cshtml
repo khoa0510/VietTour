@@ -1,6 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
-    //Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Sửa Tour";
 }
                                                     <!--EDIT TOUR-->
 @model EditTourViewModel
@@ -11,33 +10,31 @@
     <form method="post" enctype="multipart/form-data">
         <div class="card-body">
             <div class="form-group">
-                <label for="TourId">Mã Tour</label>
-                <input type="text" class="form-control" id="TourId" name="TourId" value="@Model.TourName" placeholder="Nhập tên Tour">
-            </div>
-
-            <div class="form-group">
                 <label for="TourName">Tên Tour</label>
                 <input type="text" class="form-control" id="TourName" name="TourName" value="@Model.TourName" placeholder="Nhập tên Tour">
             </div>
 
             <div class="form-group">
                 <label for="Summary">Địa điểm nổi bật</label>
-                <textarea class="form-control summernote" id="Summary" name="Summary" value="@Model.Summary"></textarea>
+                <textarea class="form-control summernote" id="Summary" name="Summary">@Model.Summary</textarea>
             </div>
 
             <div class="form-group">
                 <label for="ProvinceId">Vùng miền</label>
-                <select asp-items="@(new SelectList(ViewBag.ProvinceList))" class="form-control" id="Province" name="ProvinceName"></select>
+                @Html.DropDownListFor(m => m.ProvinceName,
+                new SelectList(ViewBag.ProvinceList),
+                new { @class = "form-control" })
             </div>
-            <!--SAO EM THẤY EDIT TOUR VIEWMODEL KHÔNG CÓ ẢNH, VẬY SAO EDIT ẢNH NÊN EM CMT LẠI NHA-->
-@*            <div class="form-group">
+
+            <div class="form-group">
                 <label for="Picture">Hình ảnh</label>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="form-control" id="Picture">
                     </div>
                 </div>
-            </div>*@
+                <img src=@Model.Picture alt="" class="img-fluid">
+            </div>
 
             <div class="form-group">
                 <label for="Price">Giá Tour</label>
@@ -46,7 +43,7 @@
 
             <div class="form-group">
                 <label for="Description">Chi tiết Tour</label>
-                <textarea class="form-control summernote" id="Description" name="Description" value="@Model.Description"></textarea>
+                <textarea class="form-control summernote" id="Description" name="Description">@Model.Description</textarea>
             </div>
         </div>
 

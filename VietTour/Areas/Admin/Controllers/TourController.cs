@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VietTour.Areas.Admin.Models;
 using VietTour.Data.Repositories;
@@ -11,17 +12,25 @@ namespace VietTour.Areas.Admin.Controllers
     {
         private readonly MainRepository _mainRepository;
         private readonly List<string?> _provinceList;
+        private readonly IMapper _mapper;
 
-        public TourController(MainRepository mainRepository)
+        public TourController(MainRepository mainRepository, IMapper mapper)
         {
             _mainRepository = mainRepository;
+            _mapper = mapper;
             _provinceList = _mainRepository.TourRepository.GetProvinceList();
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? page, string sortBy, string search)
         {
-            return View();
+            int pageNumber = page ?? 1;
+            int pageSize = 12;
+            TourViewModel tourViewModel = new()
+            {
+                tourList = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search)
+            };
+            return View(tourViewModel);
         }
 
         [HttpGet]
@@ -60,7 +69,9 @@ namespace VietTour.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.ProvinceList = _provinceList;
+            EditTourViewModel tour = _mainRepository.TourRepository.GetTour(id);
+            return View(tour);
         }
 
         [HttpPost]
@@ -79,10 +90,11 @@ namespace VietTour.Areas.Admin.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpGet]
+        public ActionResult Delete(int id)
         {
-            return View();
+            _mainRepository.TourRepository.DeleteTour(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using VietTour.Areas.Admin.Models;
 using VietTour.Areas.Public.Models;
 using VietTour.Data.Entities;
@@ -36,15 +37,6 @@ namespace VietTour.Data.Repositories
             return true;
         }
 
-        public User? VerifyPassword(LogInViewModel logInViewModel)
-        {
-            var user = _context.Users.SingleOrDefault(u => u.Phone == logInViewModel.Phone);
-            if (user == null) return null;
-            if (BCrypt.Net.BCrypt.Verify(logInViewModel.Password, user.Password))
-                return user;
-            return null;
-
-        }
         public UserDetailViewModel? GetUserDetail(string cookieId)
         {
             var user = _context.Users.SingleOrDefault(u => u.CookieId == cookieId);
@@ -73,6 +65,30 @@ namespace VietTour.Data.Repositories
             return true;
         }
 
+        public bool EditUser(EditUserViewModel userDetailViewModel, string cookieId)
+        {
+            var admin = _context.Users.SingleOrDefault(u => u.CookieId == cookieId);
+            if (admin == null) return false;
+            if (!admin.Admin) return false;
+
+            var user = _context.Users.SingleOrDefault(u => u.UserId == userDetailViewModel.UserId);
+            if (user == null) return false;
+            if (user.Username != userDetailViewModel.Username)
+                user.Username = userDetailViewModel.Username;
+            if (user.Email != userDetailViewModel.Email)
+                user.Email = userDetailViewModel.Email;
+            if (user.Phone != userDetailViewModel.Phone)
+                user.Phone = userDetailViewModel.Phone;
+            if (user.Address != userDetailViewModel.Address)
+                user.Address = userDetailViewModel.Address;
+            if (user.Admin != userDetailViewModel.Admin)
+                user.Admin = userDetailViewModel.Admin;
+            if (!userDetailViewModel.Password.IsNullOrEmpty() && !BCrypt.Net.BCrypt.Verify(userDetailViewModel.Password, user.Password))
+                user.Password = BCrypt.Net.BCrypt.HashPassword(userDetailViewModel.Password);
+            _context.SaveChanges();
+            return true;
+        }
+
         public string RandomCookie()
         {
             Random random = new();
@@ -87,6 +103,16 @@ namespace VietTour.Data.Repositories
                 cookieId += str[x];
             }
             return cookieId;
+        }
+
+        public User? VerifyPassword(LogInViewModel logInViewModel)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Phone == logInViewModel.Phone);
+            if (user == null) return null;
+            if (BCrypt.Net.BCrypt.Verify(logInViewModel.Password, user.Password))
+                return user;
+            return null;
+
         }
     }
 }

@@ -34,8 +34,7 @@ namespace VietTour.Areas.Public.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            Tour tour = _mainRepository.TourRepository.GetTour(id);
-            TourDetailViewModel tourDetailViewModel = _mapper.Map<TourDetailViewModel>(tour);
+            TourDetailViewModel tourDetailViewModel = _mainRepository.TourRepository.GetTourDetail(id);
             return View(tourDetailViewModel);
         }
     }

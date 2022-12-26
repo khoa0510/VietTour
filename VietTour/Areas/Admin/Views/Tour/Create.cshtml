@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Tour";
+    ViewData["Title"] = "Thêm Tour";
 }
                                                                 <!--TOUR CREATE-->
 @model CreateTourViewModel
@@ -9,15 +9,14 @@
 
     <form method="post" enctype="multipart/form-data">
         <div class="card-body">
-            <input type="hidden" name="TourId" @*value="@Model.TourId"*@ />
             <div class="form-group">
                 <label for="TourName">Tên Tour</label>
-                <input type="text" class="form-control" id="TourName" name="TourName" @*value="@Model.TourName"*@ placeholder="Nhập tên Tour">
+                <input type="text" class="form-control" id="TourName" name="TourName" placeholder="Nhập tên Tour">
             </div>
 
             <div class="form-group">
                 <label for="Summary">Địa điểm nổi bật</label>
-                <textarea class="form-control summernote" id="Summary" name="Summary" @*value="@Model.Summary"*@></textarea>
+                <textarea class="form-control summernote" id="Summary" name="Summary"></textarea>
             </div>
 
             <div class="form-group">
