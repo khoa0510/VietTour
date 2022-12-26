@@ -1,8 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
-                                                                    <!--TRIP-LIST-->
+<!--TRIP-LIST-->
 @model TripViewModel
 <body>
     <div class="row">
@@ -17,30 +16,30 @@
                         <thead>
                             <tr>
                                 <th>Trip ID</th>
+                                <th>Tour ID</th>
                                 <th>Ngày bắt đầu</th>
                                 <th>Số lượng</th>
-                             
+
                                 <th>Tính năng</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model.tripList)
+                            @foreach (var item in Model.tripList)
                             {
-                            <tr>
-                            <td>@item.TripId</td>
-                            <td>
-                            @item.DayStart
-                            </td>
-                            <td> @item.Capacity</td>
-                            <td>
+                                <tr>
+                                    <td>@item.TripId</td>
+                                    <td>@item.TourId</td>
+                                    <td>@item.DayStart</td>
+                                    <td> @item.Capacity</td>
+                                    <td>
                                         <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" asp-route-id=@item.TripId class="edit" title="Sửa" style="margin-right:10px;">
                                             Sửa
                                         </a>
                                         <a asp-area="Admin" asp-controller="Trip" asp-action="Delete" asp-route-id=@item.TripId class="delete" title="Xóa">
                                             Xoá
                                         </a>
-                            </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
 
                         </tbody>

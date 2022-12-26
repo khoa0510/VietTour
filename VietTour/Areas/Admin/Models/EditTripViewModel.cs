@@ -3,7 +3,6 @@
     public class EditTripViewModel
     {
         // sửa trip - update
-        public int TripId { get; set; }
 
         public int TourId { get; set; }
 
