@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using VietTour.Areas.Admin.Models;
 using VietTour.Areas.Public.Models;
+using VietTour.Areas.Shared.Models;
 using VietTour.Data.Entities;
 
 namespace VietTour.Data.Repositories
@@ -15,6 +17,24 @@ namespace VietTour.Data.Repositories
         {
             _context = viettourContext;
             _mapper = mapper;
+        }
+
+        public List<UserComponent> GetAll(int pageNumber, int pageSize, string? sortBy, string? search)
+        {
+            var users = _context.Users.AsNoTracking();
+            if (!string.IsNullOrEmpty(search))
+            {
+                users = users.Where(u => u.Username.Contains(search));
+            }
+            List<User> userList;
+            userList = users.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+            List<UserComponent> userComponents = new();
+            foreach (var user in userList)
+            {
+                var userComponent = _mapper.Map<UserComponent>(user);
+                userComponents.Add(userComponent);
+            }
+            return userComponents;
         }
 
         public bool SignUp(SignUpViewModel signUpViewModel)
@@ -65,13 +85,19 @@ namespace VietTour.Data.Repositories
             return true;
         }
 
-        public bool EditUser(EditUserViewModel userDetailViewModel, string cookieId)
+        public EditUserViewModel? GetUserDetail(int id)
         {
-            var admin = _context.Users.SingleOrDefault(u => u.CookieId == cookieId);
-            if (admin == null) return false;
-            if (!admin.Admin) return false;
+            var user = _context.Users.SingleOrDefault(u => u.UserId == id);
+            if (user == null) return null;
 
-            var user = _context.Users.SingleOrDefault(u => u.UserId == userDetailViewModel.UserId);
+            var editUserViewModel = _mapper.Map<EditUserViewModel>(user);
+            editUserViewModel.Password = "********************";
+            return editUserViewModel;
+        }
+
+        public bool EditUser(int userId, EditUserViewModel userDetailViewModel)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.UserId == userId);
             if (user == null) return false;
             if (user.Username != userDetailViewModel.Username)
                 user.Username = userDetailViewModel.Username;
@@ -81,12 +107,17 @@ namespace VietTour.Data.Repositories
                 user.Phone = userDetailViewModel.Phone;
             if (user.Address != userDetailViewModel.Address)
                 user.Address = userDetailViewModel.Address;
-            if (user.Admin != userDetailViewModel.Admin)
-                user.Admin = userDetailViewModel.Admin;
             if (!userDetailViewModel.Password.IsNullOrEmpty() && !BCrypt.Net.BCrypt.Verify(userDetailViewModel.Password, user.Password))
                 user.Password = BCrypt.Net.BCrypt.HashPassword(userDetailViewModel.Password);
             _context.SaveChanges();
             return true;
+        }
+
+        public void DeleteUser(int id)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.UserId == id);
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
 
         public string RandomCookie()

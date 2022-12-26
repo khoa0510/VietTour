@@ -3,6 +3,8 @@
     public class UserComponent
     {
         // giao diện người dùng - user
+        public int UserId { get; set; }
+
         public string? Email { get; set; }
 
         public string? Phone { get; set; }

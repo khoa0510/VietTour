@@ -21,53 +21,44 @@ namespace VietTour.Areas.Admin.Controllers
 
         //GetAllUser
         [HttpGet]
-		public ActionResult Index()
-		{
-			return View();
-		}
-
-		[HttpGet]
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
+		public ActionResult Index(int? page, string sortBy, string search)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 12;
+            UserViewModel userViewModel = new()
+            {
+                UserList = _mainRepository.UserRepository.GetAll(pageNumber, pageSize, sortBy, search)
+            };
+            return View(userViewModel);
+        }
 
 		[HttpGet]
 		public ActionResult Edit(int id)
 		{
-			return View();
+			EditUserViewModel editUserViewModel = _mainRepository.UserRepository.GetUserDetail(id);
+			return View(editUserViewModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, EditUserViewModel editUserViewModel)
 		{
-			bool err = false;
-			//Thêm hàm check sau
-			if (err)
+			if (!ModelState.IsValid)
 			{
-				return View(collection);
+				return View(editUserViewModel);
 			}
 			else
 			{
+				_mainRepository.UserRepository.EditUser(id, editUserViewModel);
 				return RedirectToAction(nameof(Index));
 			}
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+		[HttpGet]
 		public ActionResult Delete(int id)
 		{
-			bool err = false;
-			//Thêm hàm check sau
-			if (err)
-			{
-				return View();
-			}
-			else
-			{
-				return RedirectToAction(nameof(Index));
-			}
+			_mainRepository.UserRepository.DeleteUser(id);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }
