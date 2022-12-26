@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using VietTour.Data.Repositories;
 using VietTour.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VietTour.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class HomeController : Controller
+    [Authorize(Policy = "Employee")]
+    public class HomeController : Controller
 	{
 		private readonly MainRepository _mainRepository;
 		public readonly IMapper _mapper;
