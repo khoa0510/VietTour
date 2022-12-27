@@ -38,7 +38,7 @@
                 @foreach (var tour in Model.tourList)
                 {
                     <div class="col col-content-1">
-                        @*truyen toi detail*@
+                        
                         <a asp-area="Public" asp-controller="Tour" asp-action="Detail" asp-route-id="@tour.TourId">
                             <img src=@tour.Image>
                             <div class="place-body place-1">
