@@ -17,7 +17,7 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<VietTour.Data.ViettourContext>(options =>
-		options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+		options.UseSqlServer(builder.Configuration.GetConnectionString("somee")));
 builder.Services.AddScoped<MainRepository>();
 
 var app = builder.Build();

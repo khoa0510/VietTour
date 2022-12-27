@@ -44,82 +44,46 @@
 <div class="tour-section">
     <div class="content-section">
         <!--HOT Places-->
-        <div class="row places-list">
+        <div class=" places-list">
             <!---------------------------------------------------------------->
-            
+
             @if (Model != null)
             {
                 @foreach (var tour in Model.tourList)
                 {
-                    <div class="col col-content-1">
-                        <img src=@tour.Image>
-                        <div class="place-body place-1">
-                            <h3 class="place-heading">
-                                
-                                <a asp-route="tour/detail" asp-route-id="@tour.TourId">@tour.TourName</a>
-                            </h3>
-                            <ul class="place-content">
-                                @tour.Summary
-                            </ul>
-                            
-                            <p class="tour-price"> @tour.Price</p>
-                        </div>
+                    <div class="tour-content">
+
+                        <a asp-area="Public" asp-controller="Tour" asp-action="Detail" asp-route-id="@tour.TourId">
+                            <img src=@tour.Image>
+                            <div class="place-body">
+                                <h3 class="place-heading">
+                                    @tour.TourName
+                                </h3>
+                                <ul class="place-content">
+                                    @Html.Raw(@tour.Summary)
+                                </ul>
+                                <p class="tour-price"> @tour.Price</p>
+                            </div>
+                        </a>
                     </div>
                 }
             }
-
-            @*<div class="col col-content-1">
-                <img src="~/image/image-tour-1.png" alt="" class="place-img">
-                <div class="place-body place-1">
-                    <h3 class="place-heading">
-                        <a href="">Tour Phú Quốc - Kỳ Co - Eo Gió</a>
-                    </h3>
-                    <ul class="place-content">
-                        <li class="place-content-item">Bãi tắm Kỳ Co</li>
-                        <li class="place-content-item">Eo Gió</li>
-                    </ul>
-                    Sau này lấy giá trị trong Models ra thay thành biến
-                    <p class="tour-price"> 1.550.000 VND</p>
-                </div>
-            </div>
-
-            <div class="col col-content-2">
-                <img src="~/image/image-tour-2.png" alt="" class="place-img">
-                <div class="place-body place-2 ">
-                    <h3 class="place-heading">
-                        <a href="">Tour khám phá Đà Nẵng - Sơn Trà - Hội An - Bà Nà</a>
-                    </h3>
-                    <ul class="place-content">
-                        <li class="place-content-item">Bán đảo Sơn Trà</li>
-                        <li class="place-content-item">Phố cổ Hội An</li>
-                        <li class="place-content-item">Cầu Rồng</li>
-                        <li class="place-content-item">Bà Nà Hill</li>
-                    </ul>
-                    @*Sau này lấy giá trị trong Models ra thay thành biến
-                    <p class="tour-price">2.930.000 VND</p>
-                </div>
-            </div>
-
-            <div class="col col-content-3">
-                <img src="~/image/image-tour-3.png" alt="" class="place-img">
-                <div class="place-body place-3">
-                    <h3 class="place-heading">
-                        <a href="">Tour Đà Lạt - Thung Lũng Tình Yêu - Dinh Bảo Đại</a>
-                    </h3>
-                    <ul class="place-content">
-                        <li class="place-content-item">Thung lũng Tình yêu</li>
-                        <li class="place-content-item">Dinh Bảo Đại</li>
-                    </ul>
-                    @*Sau này lấy giá trị trong Models ra thay thành biến
-                    <p class="tour-price">1.070.000 VND</p>
-                </div>
-    </div>*@
         </div>
-        <a asp-area="public" asp-controller="Tour" asp-action="Index" class="more-button">Xem thêm</a>
+       <br />
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
     </div>
     @*End HOT Place*@
 </div>
 @*------End Tour --------*@
+
+
+
+
+
+
 
 
 
