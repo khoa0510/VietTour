@@ -51,10 +51,10 @@
             {
                 @foreach (var tour in Model.tourList)
                 {
-                    <div class="tour-content">
+                    <div class="tour-content img-responsive-wrap">
 
-                        <a asp-area="Public" asp-controller="Tour" asp-action="Detail" asp-route-id="@tour.TourId">
-                            <img src=@tour.Image>
+                        <a class="image-iner" asp-area="Public" asp-controller="Tour" asp-action="Detail" asp-route-id="@tour.TourId">
+                             <img src=@tour.Image>
                             <div class="place-body">
                                 <h3 class="place-heading">
                                     @tour.TourName
@@ -69,11 +69,48 @@
                 }
             }
         </div>
-       <br />
-        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-        @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page }))
+        <ul class="pagination">
+            <li class="paginate_button page-item previous disabled" id="example1_previous">
+                <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">
+                    Trang trước
+                </a>
+            </li>
+            <li class="paginate_button page-item active">
+                <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">
+                    1
+                </a>
+            </li>
+            <li class="paginate_button page-item ">
+                <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">
+                    2
+                </a>
+            </li>
+            <li class="paginate_button page-item ">
+                <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">
+                    3
+                </a>
+            </li>
+            <li class="paginate_button page-item ">
+                <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">
+                    4
+                </a>
+            </li>
+            <li class="paginate_button page-item ">
+                <a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">
+                    5
+                </a>
+            </li>
+            <li class="paginate_button page-item ">
+                <a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">
+                    6
+                </a>
+            </li>
+            <li class="paginate_button page-item next" id="example1_next">
+                <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">
+                    Trang sau
+                </a>
+            </li>
+        </ul>
     </div>
     @*End HOT Place*@
 </div>
