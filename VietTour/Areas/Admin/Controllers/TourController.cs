@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VietTour.Areas.Admin.Models;
 using VietTour.Data.Repositories;
@@ -12,22 +13,22 @@ namespace VietTour.Areas.Admin.Controllers
         private readonly MainRepository _mainRepository;
         private readonly List<string?> _provinceList;
 
-        public TourController(MainRepository mainRepository)
+        public TourController(MainRepository mainRepository, IMapper mapper)
         {
             _mainRepository = mainRepository;
             _provinceList = _mainRepository.TourRepository.GetProvinceList();
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? page, string sortBy, string search)
         {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Details(int id)
-        {
-            return View();
+            int pageNumber = page ?? 1;
+            int pageSize = 12;
+            TourViewModel tourViewModel = new()
+            {
+                tourList = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search)
+            };
+            return View(tourViewModel);
         }
 
         [HttpGet]
@@ -43,6 +44,7 @@ namespace VietTour.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ProvinceList = _provinceList;
                 return View(createTourViewModel);
             }
 
@@ -60,29 +62,32 @@ namespace VietTour.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.ProvinceList = _provinceList;
+            EditTourViewModel tour = _mainRepository.TourRepository.GetTour(id);
+            return View(tour);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EditTourViewModel editTourViewModel)
         {
-            bool err = false;
-            //Thêm hàm check sau
-            if (err)
+            if (!ModelState.IsValid)
             {
-                return View(collection);
+                ViewBag.ProvinceList = _provinceList;
+                return View(editTourViewModel);
             }
             else
             {
+                _mainRepository.TourRepository.EditTour(id, editTourViewModel);
                 return RedirectToAction(nameof(Index));
             }
         }
 
-        [HttpPost]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpGet]
+        public ActionResult Delete(int id)
         {
-            return View();
+            _mainRepository.TourRepository.DeleteTour(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

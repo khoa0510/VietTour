@@ -24,7 +24,11 @@ namespace VietTour.Areas.Public.Controllers
 			int pageNumber = page ?? 1;
 			int pageSize = 12;
 			var tourList = _mainRepository.TourRepository.GetAll(pageNumber, pageSize, sortBy, search);
-            return View();
+			HomeViewModel homeViewModel = new HomeViewModel()
+			{
+				tourList = tourList
+			};
+            return View(homeViewModel);
 		}
 
         [HttpGet]

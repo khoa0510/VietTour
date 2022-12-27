@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using VietTour.Areas.Admin.Models;
+using VietTour.Areas.Public.Models;
 using VietTour.Areas.Shared.Models;
 using VietTour.Data.Entities;
 
@@ -26,11 +27,11 @@ namespace VietTour.Data.Repositories
             }
             List<Tour> tourList;
             if (sortBy == "PRICE")
-                tourList = tours.OrderBy(t => t.Price).Skip(pageNumber).Take(pageSize).ToList();
+                tourList = tours.OrderBy(t => t.Price).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             else if (sortBy == "PRICE_DES")
-                tourList = tours.OrderByDescending(t => t.Price).Skip(pageNumber).Take(pageSize).ToList();
+                tourList = tours.OrderByDescending(t => t.Price).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             else
-                tourList = tours.Skip(pageNumber).Take(pageSize).ToList();
+                tourList = tours.Skip(pageSize*(pageNumber-1)).Take(pageSize).ToList();
             List<TourComponent> tourComponents = new List<TourComponent>();
             foreach (var tour in tourList)
             {
@@ -41,10 +42,20 @@ namespace VietTour.Data.Repositories
             return tourComponents;
         }
 
-        public Tour? GetTour(int id)
+        public EditTourViewModel? GetTour(int id)
         {
             var tours = _context.Tours.SingleOrDefault(t => t.TourId == id);
-            return tours;
+            var tour = _mapper.Map<EditTourViewModel>(tours);
+            tour.Picture = ByteToImageFile(tours.Picture);
+            tour.ProvinceName = _context.Provinces.SingleOrDefault(p => p.ProvinceId == tours.ProvinceId)?.ProvinceName;
+            return tour;
+        }
+        public TourDetailViewModel GetTourDetail(int id)
+        {
+            var tours = _context.Tours.SingleOrDefault(t => t.TourId == id);
+            var tour = _mapper.Map<TourDetailViewModel>(tours);
+            tour.Picture = ByteToImageFile(tours.Picture);
+            return _mapper.Map<TourDetailViewModel>(tour);
         }
 
         public List<string?> GetProvinceList()
@@ -62,6 +73,37 @@ namespace VietTour.Data.Repositories
                 tour.Picture = FileImageToByte(createTourViewModel.PictureFile);
 
             _context.Add(tour);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool EditTour(int id, EditTourViewModel editTourViewModel)
+        {
+            var tour = _context.Tours.SingleOrDefault(t => t.TourId == id);
+            if (tour == null) return false;
+
+            //if (tour.TourName != editTourViewModel.TourName)
+            tour.TourName = editTourViewModel.TourName;
+            //if (tour.Summary = editTourViewModel.Summary)
+            tour.Summary = editTourViewModel.Summary;
+            //if (tour.Description != editTourViewModel.Description)
+            tour.Description = editTourViewModel.Description;
+            //if (tour.Price != editTourViewModel.Price)
+            tour.Price = editTourViewModel.Price;
+            tour.ProvinceId = _context.Provinces.SingleOrDefault(p => p.ProvinceName == editTourViewModel.ProvinceName)?.ProvinceId;
+
+            if (editTourViewModel.PictureFile?.Length > 0)
+                tour.Picture = FileImageToByte(editTourViewModel.PictureFile);
+
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteTour(int id)
+        {
+            Tour tour = _context.Tours.SingleOrDefault(t => t.TourId == id);
+
+            _context.Remove(tour);
             _context.SaveChanges();
             return true;
         }

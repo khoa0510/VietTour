@@ -4,6 +4,6 @@ namespace VietTour.Areas.Admin.Models
 {
     public class UserViewModel
     {
-        public List<UserComponent> Userlist { get; set; }
+        public List<UserComponent> UserList { get; set; }
     }
 }

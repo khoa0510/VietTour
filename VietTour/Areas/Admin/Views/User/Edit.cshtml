@@ -1,6 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
-    //Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Sửa thông tin User";
 }
                                                     <!--EDIT-USER-->
 @model EditUserViewModel
@@ -13,21 +12,25 @@
             
             <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" name="Email" @*value="@Model.Email"*@ placeholder="Nhập email">
+                <input type="email" class="form-control" id="Email" name="Email" value=@((@Model.Email==null)?"":@Model.Email)>
             </div>
 
             <div class="form-group">
                 <label for="Phone">Số điện thoại</label>
-                <input type="number" class="form-control" id="Phone" name="Phone" @*value="@Model.Phone"*@ placeholder="Nhập số điện thoại">
+                <input type="tel" class="form-control" id="Phone" name="Phone" value="@Model.Phone">
             </div>
 
             <div class="form-group">
                 <label for="Username">Tên người dùng</label>
-                <input type="text" class="form-control" id="Username" name="Username" @*value="@Model.Username"*@ placeholder="Nhập tên người dùng">
+                <input type="text" class="form-control" id="Username" name="Username" value=@((@Model.Username==null)?"":@Model.Username)>
             </div>
             <div class="form-group">
                 <label for="Address">Địa chỉ</label>
-                <input type="text" class="form-control" id="Address" name="Address" @*value="@Model.Address"*@ placeholder="Nhập địa chỉ">
+                <input type="text" class="form-control" id="Address" name="Address" value=@((@Model.Address==null)?"":@Model.Address)>
+            </div>
+            <div class="form-group">
+                <label for="Password">Mật khẩu</label>
+                <input type="password" class="form-control" id="Password" name="Password" value="" placeholder="**********">
             </div>
 
         </div>

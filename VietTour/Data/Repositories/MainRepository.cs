@@ -7,6 +7,7 @@ namespace VietTour.Data.Repositories
 		public TourRepository TourRepository { get; private set; }
 		public UserRepository UserRepository { get; private set; }
 		public TripRepository TripRepository { get; private set; }
+		public BookingRepository BookingRepository { get; private set; }
 
 		public MainRepository(ViettourContext viettourContext, IMapper mapper)
 		{
@@ -14,6 +15,7 @@ namespace VietTour.Data.Repositories
 			TourRepository = new TourRepository(viettourContext, mapper);
 			UserRepository = new UserRepository(viettourContext, mapper);
 			TripRepository = new TripRepository(viettourContext, mapper);
-		}
+            BookingRepository = new BookingRepository(viettourContext, mapper);
+        }
 	}
 }

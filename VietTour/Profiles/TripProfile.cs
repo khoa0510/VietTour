@@ -10,6 +10,7 @@ namespace VietTour.Profiles
         {
             CreateMap<Trip, TripComponent>();
             CreateMap<CreateTripViewModel, Trip>();
+            CreateMap<Trip, EditTripViewModel>();
         }
     }
 }

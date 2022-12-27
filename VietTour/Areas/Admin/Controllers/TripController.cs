@@ -59,36 +59,30 @@ namespace VietTour.Areas.Admin.Controllers
 		[HttpGet]
 		public ActionResult Edit(int id)
 		{
-			return View();
+			var editTripViewModel = _mainRepository.TripRepository.GetOne(id);
+			return View(editTripViewModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, EditTripViewModel editTripViewModel)
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(collection);
+				return View(editTripViewModel);
 			}
 			else
 			{
+				_mainRepository.TripRepository.Edit(id, editTripViewModel);
 				return RedirectToAction(nameof(Index));
 			}
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+		[HttpGet]
 		public ActionResult Delete(int id)
 		{
-			try
-			{
-				_mainRepository.TripRepository.Delete(id);
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return RedirectToAction(nameof(Index)); ;
-			}
+			_mainRepository.TripRepository.Delete(id);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

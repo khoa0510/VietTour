@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "User";
+    ViewData["Title"] = "Quản lý User";
     //Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     // Nếu layout không hiển thị thì xoá cmt dòng trên
 }
@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
                            
-                            @foreach (var item in Model.Userlist)
+                            @foreach (var item in Model.UserList)
                             {
                                 <tr>
                                     <td>@item.Email</td>
@@ -37,12 +37,12 @@
                                     <td> @item.Username</td>
                                     <td> @item.Address</td>
                                     <td>
-                                        <a asp-area="Admin" asp-controller="User" asp-action="Edit" class="edit" title="Sửa" style="margin-right:10px;">
-                                            Sửa
-                                        </a>
-                                        <a href="#" class="delete" title="Xóa">
-                                            Xoá
-                                        </a>
+                                    <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id=@item.UserId class="edit" title="Sửa" style="margin-right:10px;">
+                                        Sửa
+                                    </a>
+                                    <a asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id=@item.UserId class="delete" title="Xóa">
+                                        Xoá
+                                    </a>
                                     </td>
                                 </tr>
                             }

@@ -1,22 +1,31 @@
-﻿namespace VietTour.Areas.Public.Models
+﻿using VietTour.Areas.Shared.Models;
+
+namespace VietTour.Areas.Public.Models
 {
     public class TourDetailViewModel
     {
-        // tìm kiếm tour
-        //public string find_Tour { get; set; }
-        //tour id
-        public int tour_id { get; set; }
+        public int TourId { get; set; }
 
-        public int price { get; set; }
+        public string? TourName { get; set; }
+
+        public string? Summary { get; set; }
+
+        public string? Description { get; set; }
+
+        public decimal Price { get; set; }
+
+        public string Picture { get; set; }
 
         // Danh sách các ngày của tour
-        public List<DateTime> tripList { get; set; }
+        public List<DateTime> TripList { get; set; }
 
         // số khách
-        public int capacity { get; set; }
+        public int Capacity { get; set; }
 
 
         //COMMENTS
-        public List<CommentComponent> commentList { get; set; }
+        public List<CommentComponent> CommentList { get; set; }
+
+        public List<TourComponent> tourList { get; set; }
     }
 }

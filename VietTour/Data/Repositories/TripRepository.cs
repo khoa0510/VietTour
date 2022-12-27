@@ -21,12 +21,12 @@ namespace VietTour.Data.Repositories
             var trips = _context.Trips.AsNoTracking();
             if (!string.IsNullOrEmpty(search))
             {
-                trips = trips.Where(t => int.Parse(DateTime.Now.Subtract(t.DayStart).ToString()) < 0);
+                trips = trips.Where(t => int.Parse(DateTime.Now.Subtract(t.DayStart).ToString()) >= 0);
             }
             List<Trip> tripList;
             if (sortBy == "DAY_DES")
-                tripList = trips.OrderByDescending(t => t.DayStart).Skip(pageNumber).Take(pageSize).ToList();
-            else tripList = trips.OrderBy(t => t.DayStart).Skip(pageNumber).Take(pageSize).ToList();
+                tripList = trips.OrderByDescending(t => t.DayStart).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+            else tripList = trips.OrderBy(t => t.DayStart).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             
             List<TripComponent> tripComponents = new List<TripComponent>();
             foreach (var trip in tripList)
@@ -37,6 +37,13 @@ namespace VietTour.Data.Repositories
             return tripComponents;
         }
 
+        public EditTripViewModel GetOne(int id)
+        {
+            var trip = _context.Trips.SingleOrDefault(t => t.TripId == id);
+            EditTripViewModel editTripViewModel = _mapper.Map<EditTripViewModel>(trip);
+            return editTripViewModel;
+        }
+
         public bool Create(CreateTripViewModel createTripViewModel)
         {
             var trip = _mapper.Map<Trip>(createTripViewModel);
@@ -45,10 +52,27 @@ namespace VietTour.Data.Repositories
             return true;
         }
 
+        public bool Edit(int id, EditTripViewModel editTripViewModel)
+        {
+            var trip = _context.Trips.SingleOrDefault(t => t.TripId == id);
+            trip.TourId = editTripViewModel.TourId;
+            trip.DayStart = editTripViewModel.DayStart;
+            trip.Capacity = editTripViewModel.Capacity;
+            _context.SaveChanges();
+            return true;
+        }
+
         public void Delete(int TripId)
         {
             var trip = _context.Trips.SingleOrDefault(t => t.TripId == TripId);
-            _context.Trips.Remove(trip);
+            _context.Remove(trip);
+            _context.SaveChanges();
+        }
+
+        public List<DateTime> ListTripTimeByTour(int tourId)
+        {
+            var list = _context.Trips.Select(t => t.DayStart);
+            return list.ToList();
         }
     }
 }
