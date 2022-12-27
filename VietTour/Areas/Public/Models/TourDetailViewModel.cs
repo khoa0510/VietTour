@@ -1,4 +1,6 @@
-﻿namespace VietTour.Areas.Public.Models
+﻿using VietTour.Areas.Shared.Models;
+
+namespace VietTour.Areas.Public.Models
 {
     public class TourDetailViewModel
     {
@@ -23,5 +25,7 @@
 
         //COMMENTS
         public List<CommentComponent> CommentList { get; set; }
+
+        public List<TourComponent> tourList { get; set; }
     }
 }

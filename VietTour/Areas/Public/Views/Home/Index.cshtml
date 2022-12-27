@@ -46,17 +46,17 @@
         <!--HOT Places-->
         <div class="row places-list">
             <!---------------------------------------------------------------->
-            @*
+            
             @if (Model != null)
             {
                 @foreach (var tour in Model.tourList)
                 {
                     <div class="col col-content-1">
-                        <img src=@tour.imagesUrl>
+                        <img src=@tour.Image>
                         <div class="place-body place-1">
                             <h3 class="place-heading">
                                 
-                                <a asp-route="tour/detail" asp-route-id="@tour.tourId">@tour.TourName</a>
+                                <a asp-route="tour/detail" asp-route-id="@tour.TourId">@tour.TourName</a>
                             </h3>
                             <ul class="place-content">
                                 @tour.Summary
@@ -66,9 +66,9 @@
                         </div>
                     </div>
                 }
-            }*@
+            }
 
-            <div class="col col-content-1">
+            @*<div class="col col-content-1">
                 <img src="~/image/image-tour-1.png" alt="" class="place-img">
                 <div class="place-body place-1">
                     <h3 class="place-heading">
@@ -78,7 +78,7 @@
                         <li class="place-content-item">Bãi tắm Kỳ Co</li>
                         <li class="place-content-item">Eo Gió</li>
                     </ul>
-                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    Sau này lấy giá trị trong Models ra thay thành biến
                     <p class="tour-price"> 1.550.000 VND</p>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                         <li class="place-content-item">Cầu Rồng</li>
                         <li class="place-content-item">Bà Nà Hill</li>
                     </ul>
-                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    @*Sau này lấy giá trị trong Models ra thay thành biến
                     <p class="tour-price">2.930.000 VND</p>
                 </div>
             </div>
@@ -110,10 +110,10 @@
                         <li class="place-content-item">Thung lũng Tình yêu</li>
                         <li class="place-content-item">Dinh Bảo Đại</li>
                     </ul>
-                    @*Sau này lấy giá trị trong Models ra thay thành biến*@
+                    @*Sau này lấy giá trị trong Models ra thay thành biến
                     <p class="tour-price">1.070.000 VND</p>
                 </div>
-            </div>
+    </div>*@
         </div>
         <a asp-area="public" asp-controller="Tour" asp-action="Index" class="more-button">Xem thêm</a>
     </div>
